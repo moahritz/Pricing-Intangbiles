@@ -1,1 +1,2 @@
 *.sqlite filter=lfs diff=lfs merge=lfs -text
+data/intangible_value_r.sqlite filter=lfs diff=lfs merge=lfs -text
