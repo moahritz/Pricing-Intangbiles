@@ -1,4 +1,4 @@
-# Pricing-Intangbiles
+# Pricing-Intangibles
 
 repo for my master thesis
 
