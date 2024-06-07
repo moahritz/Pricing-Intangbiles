@@ -1,6 +1,5 @@
 # Pricing-Intangbiles
-repo fro my master thesis
 
+repo for my master thesis
 
-test line from RStudio
-
+test line from RStudio.
