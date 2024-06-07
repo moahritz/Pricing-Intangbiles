@@ -76,48 +76,6 @@ dbWriteTable(intangible_value,
 
 
 
-
-# all you need to do to access data that is stored in the database is to follow three steps: 
-#(i) Establish the connection to the SQLite database, 
-#(ii) call the table you want to extract, and 
-#(iii) collect the data. 
-
-#For your convenience, the following steps show all you need in a compact fashion.
-
-
-
-
-
-#test <- dbConnect(
-#  SQLite(),
-#  "data/test.sqlite",
-#  extended_types = TRUE
-#)
-
-#factors_q_monthly <- tbl(test, "factors_q_monthly")
-#factors_q_monthly <- factors_q_monthly |> collect()
-
-
-
-
-
-
-########## Managing the Database
-
-
-res <- dbSendQuery(intangible_value, "VACUUM")      #https://www.sqlitetutorial.net/sqlite-vacuum/    
-res
-
-dbClearResult(res)    #store the result of the above query in res because the database keeps the result set open. To close open results and avoid warnings going forward, use
-
-
-dbListTables(intangible_value)
-
-
-
-
-########
-
 ############ Accessing WRDS
 
 
