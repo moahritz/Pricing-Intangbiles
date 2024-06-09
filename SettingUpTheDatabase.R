@@ -292,7 +292,9 @@ compustat <- compustat |>
     op = (revt - coalesce(cogs, 0) - 
             coalesce(xsga, 0) - coalesce(xint, 0)) / be,
     op_adj = (revt - coalesce(cogs, 0) - 
-                coalesce(xsga * 0.7, 0) - coalesce(xint, 0) + coalesce(xsga * 0.3, 0) + coalesce(xrd, 0)) / be_int, #also use intangible adjusted book equity for these results!
+                coalesce(xsga * 0.7, 0) - coalesce(xint, 0) + coalesce(xsga * 0.3, 0) + coalesce(xrd, 0)) / be_int, #intangible adjusted book equity for these results!
+    op_adjOLD = (revt - coalesce(cogs, 0) - 
+                coalesce(xsga * 0.7, 0) - coalesce(xint, 0) + coalesce(xsga * 0.3, 0) + coalesce(xrd, 0)) / be, #don't (!) intangible adjusted book equity for these results!
   )
 
 
@@ -315,8 +317,8 @@ compustat <- compustat |>
   mutate(
     inv = at / at_lag - 1,
     inv = if_else(at_lag <= 0, NA, inv),
-    aag = (at - at_lag -(oc - oc_lag)) / at_lag,
-    aag = if_else(at_lag <= 0 , NA, aag)
+    aag = (at - at_lag - (oc - oc_lag)) / at_lag,
+    aag = if_else((at_lag -(oc -oc_lag)) <= 0 , NA, aag)
   )
 
 

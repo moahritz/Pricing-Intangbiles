@@ -1,9 +1,5 @@
 # Pricing-Intangibles
 
-repo for my master thesis
-
-test line from RStudio.
-
 **To Do:**
 
 -   Download LIQ Factor
@@ -17,3 +13,11 @@ test line from RStudio.
 -   Fucking get behind how to fix this fucking shit of a whore piece of git connection without suing github desktop those bunch of motherless sloths. die -\> did it (will keep this as a memento tho)
 
 -   Show the difference of the Factors when RMW is divided by be, or by be_int
+
+List of test plots:
+
+All the recreated fama french factors with the originals.
+
+All the intangible factors with the recreated fff.
+
+The two different rmw_int factors

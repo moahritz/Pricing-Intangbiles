@@ -1,10 +1,35 @@
+library(tidyverse)
+library(scales)
+library(RPostgres)
+library(RSQLite)
+library(frenchdata)
+
+
+int<- dbConnect(
+  SQLite(),
+  "data/intangible_value_r.sqlite",
+  extended_types = TRUE
+)
+dbListTables(int)
+
+
+ff5 <- tbl(int, "factors_ff5_monthly_frenchdata") |>
+  select(month, smb, hml, rmw, cma) |>
+  collect()
+factors_replicated <- tbl(int, "factors_ff5_replicated") |>
+  select(month, smb_replicated, hml_replicated, rmw_replicated, cma_replicated) |>
+  collect()
+factors_int <- tbl(int, "intangible factors")|>
+  select(month, smb_replicated, hml_int_replicated, rmw_int, rmw_intOLD, cma_int) |>
+  collect()
+
 
 test <- ff5 |>
   inner_join(factors_replicated, join_by(month)) |>
   inner_join(factors_int, join_by(month)) |>
   mutate(
     across(c(smb_replicated.x,smb_replicated.y, hml_replicated, 
-             rmw_replicated, cma_replicated,hml_int_replicated, rmw_int, cma_int), ~round(., 4))
+             rmw_replicated, cma_replicated,hml_int_replicated, rmw_int, rmw_intOLD, cma_int), ~round(., 4))
   )
 test <- subset(test, month <= as.Date("2022-12-01"))
 
@@ -19,7 +44,7 @@ test <- test |>
   mutate(Date = format(month, "%Y-%m")) |>
   inner_join(hml_int |> mutate(Date = format(month, "%Y-%m")), join_by(Date)) |>
   select(-Date, -month.y, -smb_replicated.y)
-View(test)
+
 
 
 
@@ -54,19 +79,31 @@ test <- test|>
   arrange(month.x) %>%
   mutate(cumulative_rmw = cumprod(1 + (rmw)),
          cumulative_rmw_int = cumprod((1 + rmw_int)),
+         cumulative_rmw_intOLD = cumprod((1 + rmw_intOLD)),
          cumulative_rmw_replicated = cumprod((1 + rmw_replicated)))
 
 
 
 ggplot(test, aes(x = month.x)) +
   geom_line(aes(y = cumulative_rmw_replicated, color = "Fama-French factor")) +
-  geom_line(aes(y = cumulative_rmw_int - cumulative_rmw_replicated, color = "Difference between Factors")) +
+  geom_line(aes(y = cumulative_rmw_int - cumulative_rmw_replicated , color = "Difference between Factors")) +
   geom_line(aes(y = cumulative_rmw_int, color = "Factor w/ Intangible Adjustment")) +
   labs(x = "Date", y = "Cumulative Returns", title = "Cumulative Returns of the different RMW factors") +
   scale_color_manual("", 
                      breaks = c("Fama-French factor", "Difference between Factors", "Factor w/ Intangible Adjustment"),
                      values = c("salmon", "darkblue","lightblue")) +
   theme_minimal()
+
+ggplot(test, aes(x = month.x)) +
+  geom_line(aes(y = cumulative_rmw_intOLD, color = "Old Factor w/ Intangible Adjustment")) +
+  geom_line(aes(y = cumulative_rmw_int, color = "Factor w/ Intangible Adjustment")) +
+  labs(x = "Date", y = "Cumulative Returns", title = "Difference of Factor Portfolio returns for (un-)adjusted book equity (old)") +
+  scale_color_manual("", 
+                     breaks = c("Old Factor w/ Intangible Adjustment", "Factor w/ Intangible Adjustment"),
+                     values = c("darkblue","lightblue")) +
+  theme_minimal()
+
+
 
 
 test <- test|>

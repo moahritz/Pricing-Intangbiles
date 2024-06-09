@@ -5,11 +5,12 @@ library(RSQLite)
 library(frenchdata)
 
 
-int <- dbConnect(
+int<- dbConnect(
   SQLite(),
-  "~/Documents/WU Abgeschlossen/econometrics in finance/ECCE/data/intangible_value_r.sqlite",
-  extend_types = TRUE
+  "data/intangible_value_r.sqlite",
+  extended_types = TRUE
 )
+
 dbListTables(int)
 
 
@@ -271,7 +272,7 @@ factors_replicated <- factors_size |>
 
 
 
-dbWriteTable(intangible_value,
+dbWriteTable(int,
              "factors_ff5_replicated",
              value = factors_replicated,
              overwrite = TRUE

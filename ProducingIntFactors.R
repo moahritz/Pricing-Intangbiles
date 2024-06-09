@@ -5,10 +5,10 @@ library(RSQLite)
 library(frenchdata)
 
 
-int <- dbConnect(
+int<- dbConnect(
   SQLite(),
-  "~/Documents/WU Abgeschlossen/econometrics in finance/ECCE/data/intangible_value_r.sqlite",
-  extend_types = TRUE
+  "data/intangible_value_r.sqlite",
+  extended_types = TRUE
 )
 dbListTables(int)
 
@@ -29,7 +29,7 @@ crsp$month <- as.Date(crsp$month, origin = "1970-01-01")
 compustat <- tbl(int, "compustat") |>
   select(
     gvkey, datadate, be, be_int, op,
-    op_adj, inv, aag
+    op_adj, op_adjOLD, inv, aag
   ) |>
   collect()
 compustat$datadate <- as.Date(compustat$datadate, origin = "1970-01-01")
@@ -97,12 +97,12 @@ assign_portfolio <- function(data,
 
 other_sorting_variables <- compustat |>
   mutate(sorting_date = ymd(str_c(year(datadate) + 1, "0701"))) |>
-  select(gvkey, sorting_date, be, be_int, op, op_adj, inv,  aag) |>
+  select(gvkey, sorting_date, be, be_int, op, op_adj, op_adjOLD, inv,  aag) |>
   inner_join(market_equity, 
              join_by(gvkey, sorting_date)) |>
   mutate(bm = be / me,
          bm_int = be_int / me) |>
-  select(permno, sorting_date, me, be, be_int, bm, bm_int, op, op_adj, inv,  aag)
+  select(permno, sorting_date, me, be, be_int, bm, bm_int, op, op_adj, op_adjOLD, inv,  aag)
 
 sorting_variables <- size |>
   inner_join(
@@ -126,7 +126,7 @@ portfolios <- sorting_variables |>
     )) |> 
   group_by(sorting_date, portfolio_size) |> 
   mutate(
-    across(c(bm, bm_int, op, op_adj, inv, aag), ~assign_portfolio(
+    across(c(bm, bm_int, op, op_adj, op_adjOLD, inv, aag), ~assign_portfolio(
       data = pick(everything()), 
       sorting_variable = ., 
       percentiles = c(0, 0.3, 0.7, 1)),
@@ -136,7 +136,7 @@ portfolios <- sorting_variables |>
   ungroup() |> 
   select(permno, sorting_date, 
          portfolio_size, portfolio_bm, portfolio_bm_int,
-         portfolio_op, portfolio_op_adj, portfolio_inv, portfolio_aag)
+         portfolio_op, portfolio_op_adj, portfolio_op_adjOLD, portfolio_inv, portfolio_aag)
 
 portfolios <- crsp |>
   mutate(sorting_date = case_when(
@@ -170,6 +170,21 @@ factors_value_int <- portfolios_value_int |>
 
 
 
+portfolios_profitability_intOLD <- portfolios |>
+  group_by(portfolio_size, portfolio_op_adjOLD, month) |>
+  summarize(
+    ret = weighted.mean(ret_excess, mktcap_lag), 
+    .groups = "drop"
+  ) 
+
+factors_profitability_intOLD <- portfolios_profitability_intOLD |>
+  group_by(month) |>
+  summarize(
+    rmw_intOLD = mean(ret[portfolio_op_adjOLD == 3]) -
+      mean(ret[portfolio_op_adjOLD == 1])
+  )
+
+
 portfolios_profitability_int <- portfolios |>
   group_by(portfolio_size, portfolio_op_adj, month) |>
   summarize(
@@ -183,9 +198,6 @@ factors_profitability_int <- portfolios_profitability_int |>
     rmw_int = mean(ret[portfolio_op_adj == 3]) -
       mean(ret[portfolio_op_adj == 1])
   )
-
-
-
 
 
 portfolios_investment_int <- portfolios |>
@@ -243,11 +255,14 @@ factors_int <- factors_int_size |>
     factors_profitability_int, join_by(month)
   ) |>
   full_join(
+    factors_profitability_intOLD, join_by(month)
+  ) |> 
+  full_join(
     factors_investment_int, join_by(month)
   )
 
 
-dbWriteTable(intangible_value,
+dbWriteTable(int,
              "intangible factors",
              value = factors_int,
              overwrite = TRUE
