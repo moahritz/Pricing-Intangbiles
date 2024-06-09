@@ -8,7 +8,7 @@ test <- ff5 |>
   )
 test <- subset(test, month <= as.Date("2022-12-01"))
 
-
+hml_int_factors <- read_csv("data/int_factors_Wang.csv")
 hml_int <- hml_int_factors[,1:2]
 colnames(hml_int) <- c("month", "hml_int")
 hml_int <- subset(hml_int, month >= as.Date("1996-07-01"))
