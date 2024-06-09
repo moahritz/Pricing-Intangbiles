@@ -14,4 +14,6 @@ test line from RStudio.
 
 -   Do the LIQ \~ F_INT, & LIQ \~ FF regressions
 
--   Fucking get behind how to fix this fucking shit of a whore piece of git connection without suing github desktop those bunch of motherless sloths. die
+-   Fucking get behind how to fix this fucking shit of a whore piece of git connection without suing github desktop those bunch of motherless sloths. die -\> did it (will keep this as a memento tho)
+
+-   Show the difference of the Factors when RMW is divided by be, or by be_int
