@@ -1,4 +1,35 @@
-## R Markdown
+## Pricing-Intangibles
+
+To Do:
+
+Download LIQ Factor
+
+Write ‘ReadMe’s’ for every auxiliary File
+
+Find out how to produce them with plots (-&gt; maybe straight KNitR
+them?)
+
+Do the LIQ ~ F\_INT, & LIQ ~ FF regressions
+
+Fucking get behind how to fix this fucking shit of a whore piece of git
+connection without suing github desktop those bunch of motherless
+sloths. die -&gt; did it (will keep this as a memento tho)
+
+Show the difference of the Factors when RMW is divided by be, or by
+be\_int
+
+MY BROTHER IN CHRIST: we forgot about the market factor. (did we?) -&gt;
+check this straight after coming back from the doc!
+
+List of test plots:
+
+\[ \] All the recreated fama french factors with the originals.
+
+All the intangible factors with the recreated fff.
+
+The two different rmw\_int factors
+
+The different HML Factors
 
 This is an R Markdown document. Markdown is a simple formatting syntax
 for authoring HTML, PDF, and MS Word documents. For more details on
