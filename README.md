@@ -4,7 +4,7 @@ To Do:
 
 Download LIQ Factor
 
-Write ‘ReadMe’s’ for every auxiliary File
+\[ \] Write ‘ReadMe’s’ for every auxiliary File
 
 Find out how to produce them with plots (-&gt; maybe straight KNitR
 them?)
@@ -25,19 +25,23 @@ List of test plots:
 
 \[ \] All the recreated fama french factors with the originals.
 
-All the intangible factors with the recreated fff.
+\[ \] All the intangible factors with the recreated fff.
 
-The two different rmw\_int factors
+\[ \] The two different rmw\_int factors
 
-The different HML Factors
+(\[ \] The different HML Factors)
 
-This is an R Markdown document. Markdown is a simple formatting syntax
-for authoring HTML, PDF, and MS Word documents. For more details on
-using R Markdown see <http://rmarkdown.rstudio.com>.
+\[ \] The Traded Liquidity Factor
 
-When you click the **Knit** button a document will be generated that
-includes both content as well as the output of any embedded R code
-chunks within the document. You can embed an R code chunk like this:
+List of all the test tables:
+
+\[ \] All the recreated factors with the originals \[ \] Liq ~ FF5 OG \[
+\] Liq ~ FF5 Int
+
+List of all factors and their composition:
+
+\[ \] All the original FF5 \[ \] All the Int FF5 recreated \[ \] HML
+original and RMW Original \[ \] The Liquidity Factor
 
     summary(cars)
 
@@ -49,14 +53,11 @@ chunks within the document. You can embed an R code chunk like this:
     ##  3rd Qu.:19.0   3rd Qu.: 56.00  
     ##  Max.   :25.0   Max.   :120.00
 
-## Including Plots
-
-You can also embed plots, for example:
+\##Plots
 
 <img src="README_files/figure-markdown_strict/hml_reproduction-1.png" height="50%" />
 
-Note that the `echo = FALSE` parameter was added to the code chunk to
-prevent printing of the R code that generated the plot.
+## Tables
 
 <table style="text-align:center">
 <tr>

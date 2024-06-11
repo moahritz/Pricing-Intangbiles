@@ -17,7 +17,7 @@ To Do:
 
 Download LIQ Factor
 
-Write 'ReadMe's' for every auxiliary File
+[ ] Write 'ReadMe's' for every auxiliary File
 
 Find out how to produce them with plots (-> maybe straight KNitR them?)
 
@@ -33,33 +33,43 @@ List of test plots:
 
 [ ] All the recreated fama french factors with the originals.
 
-All the intangible factors with the recreated fff.
+[ ] All the intangible factors with the recreated fff.
 
-The two different rmw_int factors
+[ ] The two different rmw_int factors
 
-The different HML Factors 
+([ ] The different HML Factors)
+
+[ ] The Traded Liquidity Factor
+
+List of all the test tables:
+
+[ ] All the recreated factors with the originals
+[ ] Liq ~ FF5 OG
+[ ] Liq ~ FF5 Int
 
 
+List of all factors and their composition:
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+[ ] All the original FF5
+[ ] All the Int FF5 recreated
+[ ] HML original and RMW Original
+[ ] The Liquidity Factor
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
 ```{r cars}
 summary(cars)
 ```
 
-## Including Plots
+##Plots
 
-You can also embed plots, for example:
 
 ```{r hml_reproduction, echo=FALSE, out.height= "50%" }
 hml_plot
 
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
 
+## Tables 
 ```{r reproduction, message = FALSE, results = 'asis', echo = FALSE}
 library(stargazer)
 stargazer(model_smb, model_hml, model_rmw, model_cma, type = "html")
