@@ -73,7 +73,7 @@ hml_plot <- ggplot(test, aes(x = month.x)) +
                      breaks = c( "Fama-French factor", "Difference between Factors", "Factor w/ Intangible Adjustment","Replicated Factor w/ Intangible Adjustment"),
                      values = c( "salmon", "darkblue", "red", "lightblue")) +
   theme_minimal()
-ggsave("plots/hml_plot.png", hml_plot, width = 12, height = 9, dpi = 300)
+ggsave("plots/hml_plot.png", hml_plot, width = 18, height = 9, dpi = 300)
 
 test <- test|>
   arrange(month.x) %>%
