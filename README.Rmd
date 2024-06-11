@@ -8,9 +8,35 @@ date: "2024-06-11"
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
+##Pricing-Intangibles
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+To Do:
+
+Download LIQ Factor
+
+Write 'ReadMe's' for every auxiliary File
+
+Find out how to produce them with plots (-> maybe straight KNitR them?)
+
+Do the LIQ ~ F_INT, & LIQ ~ FF regressions
+
+Fucking get behind how to fix this fucking shit of a whore piece of git connection without suing github desktop those bunch of motherless sloths. die -> did it (will keep this as a memento tho)
+
+Show the difference of the Factors when RMW is divided by be, or by be_int
+
+MY BROTHER IN CHRIST: we forgot about the market factor. (did we?) -> check this straight after coming back from the doc!
+
+List of test plots:
+
+All the recreated fama french factors with the originals.
+
+All the intangible factors with the recreated fff.
+
+The two different rmw_int factors
+
+The different HML Factors 
+
+ <http://rmarkdown.rstudio.com>.
 
 When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
