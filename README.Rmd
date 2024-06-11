@@ -52,7 +52,7 @@ summary(cars)
 
 You can also embed plots, for example:
 
-```{r pressure, echo=FALSE}
+```{r pressure, echo=FALSE, out.height= "50%" }
 hml_plot
 ```
 
