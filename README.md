@@ -30,4 +30,4 @@ All the intangible factors with the recreated fff.
 
 The two different rmw_int factors
 
-\![The different HML Factors](plots/hml_plot.png)
+[The different HML Factors](plots/hml_plot.png)
