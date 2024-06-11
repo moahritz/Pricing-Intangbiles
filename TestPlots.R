@@ -63,7 +63,7 @@ test <- test|>
          cumulative_hml_replicated = cumprod((1 + hml_replicated)),
          cumulative_hml = cumprod(1+ hml))
 
-ggplot(test, aes(x = month.x)) +
+hml_plot <- ggplot(test, aes(x = month.x)) +
   # geom_line(aes(y = cumulative_hml_int, color = "Factor w/ Intangible Adjustment")) +
   geom_line(aes(y = cumulative_hml_int_replicated, color = "Replicated Factor w/ Intangible Adjustment")) +
   geom_line(aes(y = cumulative_hml_int_replicated - cumulative_hml_replicated, color = "Difference between Factors")) +
@@ -73,7 +73,7 @@ ggplot(test, aes(x = month.x)) +
                      breaks = c( "Fama-French factor", "Difference between Factors", "Factor w/ Intangible Adjustment","Replicated Factor w/ Intangible Adjustment"),
                      values = c( "salmon", "darkblue", "red", "lightblue")) +
   theme_minimal()
-
+ggsave("plots/hml_plot.png", hml_plot, width = 10, height = 8, dpi = 300)
 
 test <- test|>
   arrange(month.x) %>%

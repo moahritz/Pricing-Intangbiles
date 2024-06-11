@@ -29,3 +29,5 @@ All the recreated fama french factors with the originals.
 All the intangible factors with the recreated fff.
 
 The two different rmw_int factors
+
+\![HML Plot](plots/hml_plot.png)
