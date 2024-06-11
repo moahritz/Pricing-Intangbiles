@@ -21,7 +21,7 @@ be\_int
 MY BROTHER IN CHRIST: we forgot about the market factor. (did we?) -&gt;
 check this straight after coming back from the doc!
 
-List of test plots:
+\#List of test plots:
 
 \[ \] All the recreated fama french factors with the originals.
 
@@ -33,15 +33,23 @@ List of test plots:
 
 \[ \] The Traded Liquidity Factor
 
-List of all the test tables:
+\#List of all the test tables:
 
-\[ \] All the recreated factors with the originals \[ \] Liq ~ FF5 OG \[
-\] Liq ~ FF5 Int
+\[ \] All the recreated factors with the originals
 
-List of all factors and their composition:
+\[ \] Liq ~ FF5 OG
 
-\[ \] All the original FF5 \[ \] All the Int FF5 recreated \[ \] HML
-original and RMW Original \[ \] The Liquidity Factor
+\[ \] Liq ~ FF5 Int
+
+\#List of all factors and their composition:
+
+\[\] All the original FF5
+
+\[\] All the Int FF5 recreated
+
+\[\] HML original and RMW Original
+
+\[\] The Liquidity Factor
 
     summary(cars)
 
