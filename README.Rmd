@@ -141,3 +141,17 @@ cma.fs_plot
 
 
 
+# The Liquidity "factor"
+
+```{r liq_factor, echo=FALSE }
+liq.f_plot 
+
+```
+
+
+```{r liq_measures, echo=FALSE }
+liq.ms_plot
+
+```
+
+

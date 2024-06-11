@@ -136,7 +136,7 @@ rmw.rep_plot <- ggplot(test.plt, aes(x = month.x)) +
 rmw.fs_plot <- ggplot(test.plt, aes(x = month.x)) +
   geom_line(aes(y = cumulative_rmw_int, color = "Factor w/ Intangible Adjustment")) +
   geom_line(aes(y = cumulative_rmw_replicated, color = "Fama-French factor")) +
-  labs(x = "Date", y = "RMW", title = "Cumulative Returns of the (Un-)Adjusted HML factors") +
+  labs(x = "Date", y = "RMW", title = "Cumulative Returns of the (Un-)Adjusted RMW factors") +
   scale_color_manual("", 
                      breaks = c( "Fama-French factor", "Factor w/ Intangible Adjustment"),
                      values = c( "salmon","lightblue")) +

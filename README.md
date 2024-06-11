@@ -439,3 +439,9 @@ F Statistic (df = 1; 328)
 ![](README_files/figure-markdown_strict/rmw_OLD-1.png)
 
 ![](README_files/figure-markdown_strict/cma_factor-1.png)
+
+# The Liquidity “factor”
+
+![](README_files/figure-markdown_strict/liq_factor-1.png)
+
+![](README_files/figure-markdown_strict/liq_measures-1.png)
