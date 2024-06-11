@@ -66,21 +66,78 @@ MY BROTHER IN CHRIST: we forgot about the market factor. (did we?) -> check this
 summary(cars)
 ```
 
-##Plots
-
-
-```{r hml_reproduction, echo=FALSE }
-hml.fs_plot 
-hml.rep_plot
-hml.int_plot
+## Reproduction of Factors
+```{r smb_reproduction, echo=FALSE }
+smb.rep_plot
 
 ```
 
 
-## Tables 
+
+
+```{r hml_reproduction, echo=FALSE }
+hml.rep_plot
+
+```
+```{r rmw_reproduction, echo=FALSE }
+rmw.rep_plot
+
+```
+
+```{r cma_reproduction, echo=FALSE }
+cma.rep_plot
+
+```
+
 ```{r reproduction, message = FALSE, results = 'asis', echo = FALSE}
 library(stargazer)
 stargazer(model_smb, model_hml, model_rmw, model_cma, type = "html")
 ```
+
+
+
+
+
+
+
+
+
+
+## The intangible Factors
+
+
+```{r hml_factor, echo=FALSE }
+hml.fs_plot 
+
+```
+
+```{r hml_int, echo=FALSE }
+hml.int_plot 
+
+```
+
+
+
+
+
+```{r rmw_factor, echo=FALSE }
+rmw.fs_plot 
+
+```
+
+```{r rmw_OLD, echo=FALSE }
+rmw.OLD_plot 
+
+```
+
+
+
+
+```{r cma_factor, echo=FALSE }
+cma.fs_plot 
+
+```
+
+
 
 

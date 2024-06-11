@@ -61,11 +61,14 @@ check this straight after coming back from the doc!
     ##  3rd Qu.:19.0   3rd Qu.: 56.00  
     ##  Max.   :25.0   Max.   :120.00
 
-\##Plots
+## Reproduction of Factors
 
-![](README_files/figure-markdown_strict/hml_reproduction-1.png)![](README_files/figure-markdown_strict/hml_reproduction-2.png)![](README_files/figure-markdown_strict/hml_reproduction-3.png)
+![](README_files/figure-markdown_strict/smb_reproduction-1.png)
 
-## Tables
+![](README_files/figure-markdown_strict/hml_reproduction-1.png)
+![](README_files/figure-markdown_strict/rmw_reproduction-1.png)
+
+![](README_files/figure-markdown_strict/cma_reproduction-1.png)
 
 <table style="text-align:center">
 <tr>
@@ -424,3 +427,15 @@ F Statistic (df = 1; 328)
 </td>
 </tr>
 </table>
+
+## The intangible Factors
+
+![](README_files/figure-markdown_strict/hml_factor-1.png)
+
+![](README_files/figure-markdown_strict/hml_int-1.png)
+
+![](README_files/figure-markdown_strict/rmw_factor-1.png)
+
+![](README_files/figure-markdown_strict/rmw_OLD-1.png)
+
+![](README_files/figure-markdown_strict/cma_factor-1.png)
