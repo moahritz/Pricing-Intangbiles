@@ -8,6 +8,7 @@ date: "2024-06-11"
 knitr::opts_chunk$set(echo = TRUE)
 source("TestPlots.R")
 source("AdditionalData.R")
+source("TestTables.R")
 ```
 
 ## Pricing-Intangibles
@@ -52,8 +53,16 @@ summary(cars)
 
 You can also embed plots, for example:
 
-```{r pressure, echo=FALSE, out.height= "50%" }
+```{r hml_reproduction, echo=FALSE, out.height= "50%" }
 hml_plot
+
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+```{r hml_reproduction2, message = FALSE, results = 'asis'}
+library(stargazer)
+stargazer(model_hml, type = "html")
+```
+
+

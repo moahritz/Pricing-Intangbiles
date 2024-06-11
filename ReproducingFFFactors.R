@@ -285,38 +285,6 @@ dbWriteTable(int,
 
 
 
-###
-###
-### Tests
-###
-###
-
-
-
-test <- ff5 |>
-  inner_join(factors_replicated, join_by(month)) |>
-  mutate(
-    across(c(smb_replicated, hml_replicated, 
-             rmw_replicated, cma_replicated), ~round(., 4))
-  )
-
-
-
-model_smb <- lm(smb ~ smb_replicated, data = test)
-summary(model_smb)
-
-model_hml <- lm(hml ~ hml_replicated, data = test)
-summary(model_hml)
-
-model_rmw <- lm(rmw ~ rmw_replicated, data = test)
-summary(model_rmw)
-
-model_cma <- lm(cma ~ cma_replicated, data = test)
-summary(model_cma)
-
-
-
-
 
 
 
