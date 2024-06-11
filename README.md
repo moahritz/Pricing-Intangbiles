@@ -58,36 +58,97 @@ You can also embed plots, for example:
 Note that the `echo = FALSE` parameter was added to the code chunk to
 prevent printing of the R code that generated the plot.
 
-    library(stargazer)
-    stargazer(model_hml, type = "html")
-
 <table style="text-align:center">
 <tr>
-<td colspan="2" style="border-bottom: 1px solid black">
+<td colspan="5" style="border-bottom: 1px solid black">
 </td>
 </tr>
 <tr>
 <td style="text-align:left">
 </td>
-<td>
+<td colspan="4">
 <em>Dependent variable:</em>
 </td>
 </tr>
 <tr>
 <td>
 </td>
-<td colspan="1" style="border-bottom: 1px solid black">
+<td colspan="4" style="border-bottom: 1px solid black">
 </td>
 </tr>
 <tr>
 <td style="text-align:left">
 </td>
 <td>
+smb
+</td>
+<td>
 hml
+</td>
+<td>
+rmw
+</td>
+<td>
+cma
 </td>
 </tr>
 <tr>
-<td colspan="2" style="border-bottom: 1px solid black">
+<td style="text-align:left">
+</td>
+<td>
+\(1\)
+</td>
+<td>
+\(2\)
+</td>
+<td>
+\(3\)
+</td>
+<td>
+\(4\)
+</td>
+</tr>
+<tr>
+<td colspan="5" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+smb\_replicated
+</td>
+<td>
+0.956<sup>\*\*\*</sup>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+(0.006)
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
 </td>
 </tr>
 <tr>
@@ -95,18 +156,114 @@ hml
 hml\_replicated
 </td>
 <td>
+</td>
+<td>
 1.023<sup>\*\*\*</sup>
+</td>
+<td>
+</td>
+<td>
 </td>
 </tr>
 <tr>
 <td style="text-align:left">
 </td>
 <td>
+</td>
+<td>
 (0.017)
+</td>
+<td>
+</td>
+<td>
 </td>
 </tr>
 <tr>
 <td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+rmw\_replicated
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+0.965<sup>\*\*\*</sup>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+(0.012)
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+cma\_replicated
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+0.985<sup>\*\*\*</sup>
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+(0.010)
+</td>
+</tr>
+<tr>
+<td style="text-align:left">
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
 </td>
 <td>
 </td>
@@ -116,29 +273,62 @@ hml\_replicated
 Constant
 </td>
 <td>
+-0.00003
+</td>
+<td>
 0.001
+</td>
+<td>
+0.0001
+</td>
+<td>
+0.0003
 </td>
 </tr>
 <tr>
 <td style="text-align:left">
+</td>
+<td>
+(0.0002)
 </td>
 <td>
 (0.001)
 </td>
+<td>
+(0.0003)
+</td>
+<td>
+(0.0002)
+</td>
 </tr>
 <tr>
 <td style="text-align:left">
 </td>
 <td>
 </td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
 </tr>
 <tr>
-<td colspan="2" style="border-bottom: 1px solid black">
+<td colspan="5" style="border-bottom: 1px solid black">
 </td>
 </tr>
 <tr>
 <td style="text-align:left">
 Observations
+</td>
+<td>
+330
+</td>
+<td>
+330
+</td>
+<td>
+330
 </td>
 <td>
 330
@@ -149,7 +339,16 @@ Observations
 R<sup>2</sup>
 </td>
 <td>
+0.987
+</td>
+<td>
 0.915
+</td>
+<td>
+0.955
+</td>
+<td>
+0.966
 </td>
 </tr>
 <tr>
@@ -157,34 +356,61 @@ R<sup>2</sup>
 Adjusted R<sup>2</sup>
 </td>
 <td>
+0.987
+</td>
+<td>
 0.915
 </td>
-</tr>
-<tr>
-<td style="text-align:left">
-Residual Std. Error
+<td>
+0.955
 </td>
 <td>
-0.010 (df = 328)
+0.966
 </td>
 </tr>
 <tr>
 <td style="text-align:left">
-F Statistic
+Residual Std. Error (df = 328)
 </td>
 <td>
-3,553.302<sup>\*\*\*</sup> (df = 1; 328)
+0.004
+</td>
+<td>
+0.010
+</td>
+<td>
+0.006
+</td>
+<td>
+0.004
 </td>
 </tr>
 <tr>
-<td colspan="2" style="border-bottom: 1px solid black">
+<td style="text-align:left">
+F Statistic (df = 1; 328)
+</td>
+<td>
+24,971.270<sup>\*\*\*</sup>
+</td>
+<td>
+3,553.302<sup>\*\*\*</sup>
+</td>
+<td>
+7,018.902<sup>\*\*\*</sup>
+</td>
+<td>
+9,352.846<sup>\*\*\*</sup>
+</td>
+</tr>
+<tr>
+<td colspan="5" style="border-bottom: 1px solid black">
 </td>
 </tr>
 <tr>
 <td style="text-align:left">
 <em>Note:</em>
 </td>
-<td style="text-align:right">
+<td colspan="4" style="text-align:right">
 <sup>*</sup>p&lt;0.1; <sup>**</sup>p&lt;0.05; <sup>***</sup>p&lt;0.01
 </td>
 </tr>
