@@ -19,7 +19,7 @@ int<- dbConnect(
 dbListTables(int)
 
 ff5 <- tbl(int, "factors_ff5_monthly_frenchdata") |>
-  select(month, smb, hml, rmw, cma) |>
+  select(month, mkt_excess, smb, hml, rmw, cma) |>
   collect()
 ff5$month <- as.Date(ff5$month, origin = "1970-01-01")
 factors_replicated <- tbl(int, "factors_ff5_replicated") |>

@@ -23,15 +23,15 @@ check this straight after coming back from the doc!
 
 \#List of test plots:
 
-\[ \] All the recreated fama french factors with the originals.
+\[x\] All the recreated fama french factors with the originals.
 
-\[ \] All the intangible factors with the recreated fff.
+\[x\] All the intangible factors with the recreated fff.
 
-\[ \] The two different rmw\_int factors
+\[x\] The two different rmw\_int factors
 
-(\[ \] The different HML Factors)
+(\[x\] The different HML Factors)
 
-\[ \] The Traded Liquidity Factor
+\[x\] The Traded Liquidity Factor
 
 \#List of all the test tables:
 
@@ -63,7 +63,7 @@ check this straight after coming back from the doc!
 
 \##Plots
 
-<img src="README_files/figure-markdown_strict/hml_reproduction-1.png" height="50%" />
+![](README_files/figure-markdown_strict/hml_reproduction-1.png)![](README_files/figure-markdown_strict/hml_reproduction-2.png)![](README_files/figure-markdown_strict/hml_reproduction-3.png)
 
 ## Tables
 

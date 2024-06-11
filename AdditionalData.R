@@ -31,14 +31,14 @@ factors_int <- tbl(int, "intangible factors")|>
   collect()
 
 
-test <- ff5 |>
+test.tbl <- ff5 |>
   inner_join(factors_replicated, join_by(month)) |>
   inner_join(factors_int, join_by(month)) |>
   mutate(
     across(c(smb_replicated.x,smb_replicated.y, hml_replicated, 
              rmw_replicated, cma_replicated,hml_int_replicated, rmw_int, rmw_intOLD, cma_int), ~round(., 4))
   )
-test <- subset(test, month <= as.Date("2022-12-01"))
+test.tbl <- subset(test, month <= as.Date("2022-12-01"))
 
 hml_int_factors <- read_csv("data/int_factors_Wang.csv")
 hml_int <- hml_int_factors[,1:2]
@@ -78,11 +78,6 @@ test <- test |>
 model_4 <- lm(LiqTrad ~ hml_rep_diff + rmw_diff + cma_diff, data = test)
 summary(model_4)
 
-test <- test|>
-  arrange(month.x) |>
-  mutate(cumulative_AggLiq = cumprod(1 + (AggLiq)),
-         cumulative_LiqInno = cumprod(1 + (LiqInno)),
-         cumulative_LiqTrad = cumprod(1 + (LiqTrad)))
 
 plot.liq <- ggplot(test, aes(x = month.x)) +
 #  geom_line(aes(y = cumulative_AggLiq, color = "Aggregate Liquidity")) +
