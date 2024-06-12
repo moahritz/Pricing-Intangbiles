@@ -69,6 +69,7 @@ check this straight after coming back from the doc!
 <td style="text-align:left">
 </td>
 <td colspan="4">
+Factors from K. French’s Website
 </td>
 </tr>
 <tr>
@@ -81,7 +82,6 @@ check this straight after coming back from the doc!
 <td style="text-align:left">
 </td>
 <td>
-Factors from K. French’s Website
 </td>
 <td>
 hml

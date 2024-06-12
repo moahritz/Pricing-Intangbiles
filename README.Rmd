@@ -90,10 +90,10 @@ library(stargazer)
 stargazer(model_smb, model_hml, model_rmw, model_cma, 
           type = "html",
           column.labels = c("SMB", "HML", "RMW", "CMA"),
-          colnames = F,
-          model.numbers = F,
-          dep.var.caption = " ",
-          dep.var.labels = "Factors from K. French's Website",
+          colnames = FALSE,
+          model.numbers = FALSE,
+          dep.var.caption = "Factors from K. French's Website",
+          dep.var.labels = " ",
           covariate.labels = c("SMB", "HML", "RMW", "CMA"),
           notes.align = "l")
 ```
