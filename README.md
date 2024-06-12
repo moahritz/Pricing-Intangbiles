@@ -85,22 +85,6 @@ Factors from K. French’s Website
 <td style="text-align:left">
 </td>
 <td>
-smb
-</td>
-<td>
-hml
-</td>
-<td>
-rmw
-</td>
-<td>
-cma
-</td>
-</tr>
-<tr>
-<td style="text-align:left">
-</td>
-<td>
 SMB
 </td>
 <td>
