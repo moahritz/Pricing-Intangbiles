@@ -85,7 +85,7 @@ Factors from K. French’s Website
 <td style="text-align:left">
 </td>
 <td>
-other stuff
+smb
 </td>
 <td>
 hml
