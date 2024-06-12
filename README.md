@@ -61,6 +61,9 @@ check this straight after coming back from the doc!
 ![](README_files/figure-markdown_strict/cma_reproduction-1.png)
 
 <table style="text-align:center">
+<caption>
+<strong>Regressions of Replicated- onto Published Factors</strong>
+</caption>
 <tr>
 <td colspan="5" style="border-bottom: 1px solid black">
 </td>
@@ -82,6 +85,7 @@ Factors from K. French’s Website
 <td style="text-align:left">
 </td>
 <td>
+other stuff
 </td>
 <td>
 hml
