@@ -62,10 +62,6 @@ MY BROTHER IN CHRIST: we forgot about the market factor. (did we?) -> check this
 [] The Liquidity Factor
 
 
-```{r cars}
-summary(cars)
-```
-
 ## Reproduction of Factors
 ```{r smb_reproduction, echo=FALSE }
 smb.rep_plot
@@ -91,7 +87,15 @@ cma.rep_plot
 
 ```{r reproduction, message = FALSE, results = 'asis', echo = FALSE}
 library(stargazer)
-stargazer(model_smb, model_hml, model_rmw, model_cma, type = "html")
+stargazer(model_smb, model_hml, model_rmw, model_cma, 
+          type = "html",
+          column.labels = c("SMB", "HML", "RMW", "CMA"),
+          colnames = F,
+          model.numbers = F,
+          dep.var.caption = " ",
+          dep.va.labels = "Factors from K. French's Website",
+          covariate.labels = c("SMB", "HML", "RMW", "CMA"),
+          notes.align = "l")
 ```
 
 

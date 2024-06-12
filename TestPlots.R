@@ -14,7 +14,7 @@ dbListTables(int)
 
 
 ff5 <- tbl(int, "factors_ff5_monthly_frenchdata") |>
-  select(month, smb, hml, rmw, cma) |>
+  select(month,mkt_excess, smb, hml, rmw, cma) |>
   collect()
 factors_replicated <- tbl(int, "factors_ff5_replicated") |>
   select(month, smb_replicated, hml_replicated, rmw_replicated, cma_replicated) |>
@@ -82,6 +82,11 @@ test.plt <- test.plt|>
          cumulative_LiqTrad = cumprod(1 + (LiqTrad)))
 
 
+
+
+
+
+#Some Stuff
 
 model_smb <- lm(smb ~ smb_replicated.x, data = test.plt)
 summary(model_smb)
@@ -162,7 +167,7 @@ cma.rep_plot <- ggplot(test.plt, aes(x = month.x)) +
                      breaks = c("Replicated Factor", "Fama-French factor"),
                      values = c("salmon", "darkblue")) +
   theme_minimal()
-cma.rep_plot
+
 cma.fs_plot <- ggplot(test.plt, aes(x = month.x)) +
   geom_line(aes(y = cumulative_cma_int, color = "Factor w/ Intangible Adjustment")) +
   geom_line(aes(y = cumulative_cma_replicated, color = "Fama-French factor")) +

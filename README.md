@@ -51,16 +51,6 @@ check this straight after coming back from the doc!
 
 \[\] The Liquidity Factor
 
-    summary(cars)
-
-    ##      speed           dist       
-    ##  Min.   : 4.0   Min.   :  2.00  
-    ##  1st Qu.:12.0   1st Qu.: 26.00  
-    ##  Median :15.0   Median : 36.00  
-    ##  Mean   :15.4   Mean   : 42.98  
-    ##  3rd Qu.:19.0   3rd Qu.: 56.00  
-    ##  Max.   :25.0   Max.   :120.00
-
 ## Reproduction of Factors
 
 ![](README_files/figure-markdown_strict/smb_reproduction-1.png)
@@ -79,7 +69,6 @@ check this straight after coming back from the doc!
 <td style="text-align:left">
 </td>
 <td colspan="4">
-<em>Dependent variable:</em>
 </td>
 </tr>
 <tr>
@@ -108,16 +97,16 @@ cma
 <td style="text-align:left">
 </td>
 <td>
-\(1\)
+SMB
 </td>
 <td>
-\(2\)
+HML
 </td>
 <td>
-\(3\)
+RMW
 </td>
 <td>
-\(4\)
+CMA
 </td>
 </tr>
 <tr>
@@ -126,7 +115,7 @@ cma
 </tr>
 <tr>
 <td style="text-align:left">
-smb\_replicated
+SMB
 </td>
 <td>
 0.956<sup>\*\*\*</sup>
@@ -165,7 +154,7 @@ smb\_replicated
 </tr>
 <tr>
 <td style="text-align:left">
-hml\_replicated
+HML
 </td>
 <td>
 </td>
@@ -204,7 +193,7 @@ hml\_replicated
 </tr>
 <tr>
 <td style="text-align:left">
-rmw\_replicated
+RMW
 </td>
 <td>
 </td>
@@ -243,7 +232,7 @@ rmw\_replicated
 </tr>
 <tr>
 <td style="text-align:left">
-cma\_replicated
+CMA
 </td>
 <td>
 </td>
@@ -422,8 +411,23 @@ F Statistic (df = 1; 328)
 <td style="text-align:left">
 <em>Note:</em>
 </td>
-<td colspan="4" style="text-align:right">
+<td colspan="4" style="text-align:left">
 <sup>*</sup>p&lt;0.1; <sup>**</sup>p&lt;0.05; <sup>***</sup>p&lt;0.01
+</td>
+</tr>
+</table>
+<table style="text-align:center">
+<tr>
+<td colspan="1" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td>
+Factors from K. French’s Website
+</td>
+</tr>
+<tr>
+<td colspan="1" style="border-bottom: 1px solid black">
 </td>
 </tr>
 </table>
