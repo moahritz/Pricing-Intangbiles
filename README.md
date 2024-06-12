@@ -404,6 +404,24 @@ F Statistic (df = 1; 328)
 </td>
 </tr>
 </table>
+<table style="text-align:center">
+<caption>
+<strong>Regressions of Replicated- onto Published Factors</strong>
+</caption>
+<tr>
+<td colspan="1" style="border-bottom: 1px solid black">
+</td>
+</tr>
+<tr>
+<td>
+test
+</td>
+</tr>
+<tr>
+<td colspan="1" style="border-bottom: 1px solid black">
+</td>
+</tr>
+</table>
 
 ## The intangible Factors
 
