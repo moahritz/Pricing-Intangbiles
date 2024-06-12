@@ -93,7 +93,7 @@ stargazer(model_smb, model_hml, model_rmw, model_cma,
           colnames = F,
           model.numbers = F,
           dep.var.caption = " ",
-          dep.va.labels = "Factors from K. French's Website",
+          dep.var.labels = "Factors from K. French's Website",
           covariate.labels = c("SMB", "HML", "RMW", "CMA"),
           notes.align = "l")
 ```

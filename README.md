@@ -81,7 +81,7 @@ check this straight after coming back from the doc!
 <td style="text-align:left">
 </td>
 <td>
-smb
+Factors from K. French’s Website
 </td>
 <td>
 hml
@@ -413,21 +413,6 @@ F Statistic (df = 1; 328)
 </td>
 <td colspan="4" style="text-align:left">
 <sup>*</sup>p&lt;0.1; <sup>**</sup>p&lt;0.05; <sup>***</sup>p&lt;0.01
-</td>
-</tr>
-</table>
-<table style="text-align:center">
-<tr>
-<td colspan="1" style="border-bottom: 1px solid black">
-</td>
-</tr>
-<tr>
-<td>
-Factors from K. French’s Website
-</td>
-</tr>
-<tr>
-<td colspan="1" style="border-bottom: 1px solid black">
 </td>
 </tr>
 </table>
