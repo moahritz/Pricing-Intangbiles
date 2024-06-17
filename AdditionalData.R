@@ -79,13 +79,23 @@ model_4 <- lm(LiqTrad ~ hml_rep_diff + rmw_diff + cma_diff, data = test)
 summary(model_4)
 
 
-plot.liq <- ggplot(test, aes(x = month.x)) +
-#  geom_line(aes(y = cumulative_AggLiq, color = "Aggregate Liquidity")) +
-#  geom_line(aes(y = cumulative_LiqInno , color = "Liquidity Innovation")) +
-  geom_line(aes(y = cumulative_LiqTrad, color = "Traded Liquidity Factor")) +
-  labs(x = "Date", y = "Return", title = "Traded Liquidity Factor mimicking PF Return from Pastor, Stambaugh (2003)") +
-  scale_color_manual("", 
-                     breaks = c("Aggregate Liquidity", "Liquidity Innovation", "Traded Liquidity Factor"),
-                     values = c("lightblue","green","darkgreen")) +
-  theme_minimal()
-plot.liq
+
+cor(test.plt$LiqInno, (test.plt$hml_int_replicated + test.plt$cma_int + test.plt$rmw_int))
+cor(test.plt$LiqInno, (test.plt$hml_replicated +test.plt$cma_replicated + test.plt$rmw_replicated))
+
+
+
+cor(test.plt$LiqInno, ((test.plt$hml_replicated - test.plt$hml_int) +(test.plt$cma_replicated - test.plt$cma_int) + (test.plt$rmw_replicated - test.plt$rmw_int)))
+
+
+ggplot(test.plt, aes(x = month.x)) +
+  geom_line(aes(y = (hml_int - hml_replicated) +(cma_int  - cma_replicated) + (rmw_int - rmw_replicated)))
+
+
+
+
+
+
+
+
+

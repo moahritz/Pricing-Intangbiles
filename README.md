@@ -103,7 +103,7 @@ CMA
 </tr>
 <tr>
 <td style="text-align:left">
-SMB
+SMB (rep)
 </td>
 <td>
 0.956<sup>\*\*\*</sup>
@@ -142,7 +142,7 @@ SMB
 </tr>
 <tr>
 <td style="text-align:left">
-HML
+HML (rep)
 </td>
 <td>
 </td>
@@ -181,7 +181,7 @@ HML
 </tr>
 <tr>
 <td style="text-align:left">
-RMW
+RMW (rep)
 </td>
 <td>
 </td>
@@ -220,7 +220,7 @@ RMW
 </tr>
 <tr>
 <td style="text-align:left">
-CMA
+CMA (rep)
 </td>
 <td>
 </td>
@@ -401,24 +401,6 @@ F Statistic (df = 1; 328)
 </td>
 <td colspan="4" style="text-align:left">
 <sup>*</sup>p&lt;0.1; <sup>**</sup>p&lt;0.05; <sup>***</sup>p&lt;0.01
-</td>
-</tr>
-</table>
-<table style="text-align:center">
-<caption>
-<strong>Regressions of Replicated- onto Published Factors</strong>
-</caption>
-<tr>
-<td colspan="1" style="border-bottom: 1px solid black">
-</td>
-</tr>
-<tr>
-<td>
-test
-</td>
-</tr>
-<tr>
-<td colspan="1" style="border-bottom: 1px solid black">
 </td>
 </tr>
 </table>
