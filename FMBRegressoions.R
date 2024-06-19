@@ -119,7 +119,7 @@ data2.nested <- data2 |>
   nest(data = c(month, ret_excess, mkt_excess, smb, hml, rmw, cma))
 data2.nested
 
-beta_int.ols <- data1.nested |>
+beta_int.ols <- data2.nested |>
   mutate(beta = future_map(
     data, ~ roll_ff5.ols(., months = 36, min_obs = 24)
   )) |>
@@ -212,15 +212,7 @@ roll_ff5_gmm <- function(data, months, min_obs) {
 # Assuming beta_ff5.gmm and beta_int.gmm have columns like permno, month, and factors like mkt_excess, smb, hml, rmw, cma
 
 # Apply rolling GMM for each group
-grouped_data <- groupby(data, [:permno, :industry])
 
-results <- DataFrame()
-for g in grouped_data
-betas_df = roll_ff5_gmm(g, 36, 24)
-betas_df.permno = g.permno[1]
-betas_df.industry = g.industry[1]
-append!(results, betas_df)
-end
 
 #######################################
 
@@ -234,18 +226,19 @@ library(sandwich)
 library(broom)
 
 
-
+###
+### 1. FF5
 
 crsp.ols <- tbl(int, "crsp_monthly") |>
   select(permno, month, ret_excess) |>
   collect()
 
-beta.ols <- tbl(int, "BETAS") |>
+beta_ff.ols <- tbl(int, "BETAS") |>
   select(month, permno, mkt_FF5.OLS, smb_FF5.OLS, hml_FF5.OLS, rmw_FF5.OLS, cma_FF5.OLS) |>
   collect()
 
 
-data_fama_macbeth <- beta.ols |>
+data_fama_macbeth_ff <- beta_ff.ols |>
   left_join(crsp.ols, by = c("permno", "month")) |>
   left_join(crsp.ols |>
               select(permno, month, ret_excess_lead = ret_excess) |>
@@ -256,24 +249,20 @@ data_fama_macbeth <- beta.ols |>
   drop_na()
 
 
-
-
-risk_premiums <- data_fama_macbeth |>
-  nest(data = c(ret_excess_lead, beta, log_mktcap, bm, permno)) |>
+risk_premiums_ff <- data_fama_macbeth_ff |>
+  nest(data = c(ret_excess_lead,mkt_FF5.OLS, smb_FF5.OLS, hml_FF5.OLS, rmw_FF5.OLS, cma_FF5.OLS, permno)) |>
   mutate(estimates = map(
     data,
-    ~ tidy(lm(ret_excess_lead ~ beta + log_mktcap + bm, data = .x))
+    ~ tidy(lm(ret_excess_lead ~ mkt_FF5.OLS+ smb_FF5.OLS+ hml_FF5.OLS+ rmw_FF5.OLS+ cma_FF5.OLS, data = .x))
   )) |>
   unnest(estimates)
 
-price_of_risk <- risk_premiums |>
+price_of_risk_ff <- risk_premiums_ff |>
   group_by(factor = term) |>
   summarize(
-    risk_premium = mean(estimate) * 100,
-    t_statistic = mean(estimate) / sd(estimate) * sqrt(n())
+    risk_premium.ff = mean(estimate) * 100,
+    t_statistic.ff = mean(estimate) / sd(estimate) * sqrt(n())
   )
-
-
 
 
 
@@ -299,6 +288,52 @@ left_join(price_of_risk,
             select(factor, t_statistic_newey_west),
           by = "factor"
 )
+
+
+
+
+###
+### 2. INT
+
+beta_int.ols <- tbl(int, "BETAS") |>
+  select(month, permno, mkt_INT.OLS, smb_INT.OLS, hml_INT.OLS, rmw_INT.OLS, cma_INT.OLS) |>
+  collect()
+
+
+data_fama_macbeth_int <- beta_int.ols |>
+  left_join(crsp.ols, by = c("permno", "month")) |>
+  left_join(crsp.ols |>
+              select(permno, month, ret_excess_lead = ret_excess) |>
+              mutate(month = month %m-% months(1)), #Adjusts the month column by subtracting one month. This effectively shifts the ret_excess_lead value to the previous month.
+            by = c("permno", "month")
+  ) |>
+  select(permno, month, ret_excess_lead, mkt_INT.OLS, smb_INT.OLS, hml_INT.OLS, rmw_INT.OLS, cma_INT.OLS) |>
+  drop_na()
+
+
+risk_premiums_int <- data_fama_macbeth_int |>
+  nest(data = c(ret_excess_lead,mkt_INT.OLS, smb_INT.OLS, hml_INT.OLS, rmw_INT.OLS, cma_INT.OLS, permno)) |>
+  mutate(estimates = map(
+    data,
+    ~ tidy(lm(ret_excess_lead ~ mkt_INT.OLS+ smb_INT.OLS+ hml_INT.OLS+ rmw_INT.OLS+ cma_INT.OLS, data = .x))
+  )) |>
+  unnest(estimates)
+
+price_of_risk_int <- risk_premiums_int |>
+  group_by(factor = term) |>
+  summarize(
+    risk_premium.int = mean(estimate) * 100,
+    t_statistic.int = mean(estimate) / sd(estimate) * sqrt(n())
+  )
+
+
+
+
+
+
+
+
+
 #######################################################################
 
 
