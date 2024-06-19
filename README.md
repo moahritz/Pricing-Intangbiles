@@ -35,7 +35,7 @@ check this straight after coming back from the doc!
 
 \#List of all the test tables:
 
-\[ \] All the recreated factors with the originals
+\[x\] All the recreated factors with the originals
 
 \[ \] Liq ~ FF5 OG
 
@@ -43,13 +43,13 @@ check this straight after coming back from the doc!
 
 \#List of all factors and their composition:
 
-\[\] All the original FF5
+\[ \] All the original FF5
 
-\[\] All the Int FF5 recreated
+\[ \] All the Int FF5 recreated
 
-\[\] HML original and RMW Original
+\[ \] HML original and RMW Original
 
-\[\] The Liquidity Factor
+\[ \] The Liquidity Factor
 
 ## Reproduction of Factors
 
@@ -422,3 +422,24 @@ F Statistic (df = 1; 328)
 ![](README_files/figure-markdown_strict/liq_factor-1.png)
 
 ![](README_files/figure-markdown_strict/liq_measures-1.png)
+
+# The Dataset
+
+    ## # A tibble: 1,491,668 × 22
+    ##    permno month      industry  ret_excess mkt_excess     smb     hml     rmw
+    ##     <dbl> <date>     <chr>          <dbl>      <dbl>   <dbl>   <dbl>   <dbl>
+    ##  1  10001 1996-07-01 Utilities    0.0189     -0.0597 -0.0381  0.0514  0.0295
+    ##  2  10001 1996-08-01 Utilities    0.0341      0.0277  0.0257 -0.0074 -0.0037
+    ##  3  10001 1996-09-01 Utilities    0.0375      0.0501 -0.0139 -0.0272  0.0127
+    ##  4  10001 1996-10-01 Utilities   -0.0328      0.0086 -0.0377  0.0494  0.014 
+    ##  5  10001 1996-11-01 Utilities    0.0253      0.0625 -0.038   0.0139  0.0212
+    ##  6  10001 1996-12-01 Utilities   -0.0640     -0.017   0.0325  0.0131  0.0037
+    ##  7  10001 1997-01-01 Utilities    0.0570      0.0499 -0.0182 -0.0142  0.0119
+    ##  8  10001 1997-02-01 Utilities   -0.0039     -0.0049 -0.0259  0.0567  0.0067
+    ##  9  10001 1997-03-01 Utilities    0.00787    -0.0503 -0.0043  0.0339  0.005 
+    ## 10  10001 1997-04-01 Utilities   -0.0043      0.0404 -0.057   0.0007  0.0326
+    ## # ℹ 1,491,658 more rows
+    ## # ℹ 14 more variables: cma <dbl>, smb_replicated <dbl>, hml_replicated <dbl>,
+    ## #   rmw_replicated <dbl>, cma_replicated <dbl>, smb_int_replicated <dbl>,
+    ## #   hml_int_replicated <dbl>, rmw_int <dbl>, rmw_intOLD <dbl>, cma_int <dbl>,
+    ## #   AggLiq <dbl>, LiqInno <dbl>, LiqTrad <dbl>, hml_int <dbl>

@@ -9,6 +9,7 @@ knitr::opts_chunk$set(echo = TRUE)
 source("TestPlots.R")
 #source("AdditionalData.R")
 source("TestTables.R")
+source("FullDataSet.R")
 ```
 
 ## Pricing-Intangibles
@@ -44,7 +45,7 @@ MY BROTHER IN CHRIST: we forgot about the market factor. (did we?) -> check this
 
 #List of all the test tables:
 
-[ ] All the recreated factors with the originals
+[x] All the recreated factors with the originals
 
 [ ] Liq ~ FF5 OG
 
@@ -53,13 +54,13 @@ MY BROTHER IN CHRIST: we forgot about the market factor. (did we?) -> check this
 
 #List of all factors and their composition:
 
-[] All the original FF5
+[ ] All the original FF5
 
-[] All the Int FF5 recreated
+[ ] All the Int FF5 recreated
 
-[] HML original and RMW Original
+[ ] HML original and RMW Original
 
-[] The Liquidity Factor
+[ ] The Liquidity Factor
 
 
 ## Reproduction of Factors
@@ -67,9 +68,6 @@ MY BROTHER IN CHRIST: we forgot about the market factor. (did we?) -> check this
 smb.rep_plot
 
 ```
-
-
-
 
 ```{r hml_reproduction, echo=FALSE }
 hml.rep_plot
@@ -100,13 +98,6 @@ stargazer(model_smb, model_hml, model_rmw, model_cma,
 
 
 
-
-
-
-
-
-
-
 ## The intangible Factors
 
 
@@ -120,10 +111,6 @@ hml.int_plot
 
 ```
 
-
-
-
-
 ```{r rmw_factor, echo=FALSE }
 rmw.fs_plot 
 
@@ -134,15 +121,10 @@ rmw.OLD_plot
 
 ```
 
-
-
-
 ```{r cma_factor, echo=FALSE }
 cma.fs_plot 
 
 ```
-
-
 
 
 # The Liquidity "factor"
@@ -152,10 +134,19 @@ liq.f_plot
 
 ```
 
-
 ```{r liq_measures, echo=FALSE }
 liq.ms_plot
 
 ```
 
 
+
+
+# The Dataset
+
+```{r dataset, echo = FALSE}
+
+
+fmb.data
+
+```
