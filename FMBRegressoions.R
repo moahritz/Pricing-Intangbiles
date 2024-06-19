@@ -21,7 +21,7 @@ library(RSQLite)
 library(scales)
 library(slider)
 library(furrr)
-
+library(gmm)
 
 
 ###
@@ -102,53 +102,204 @@ beta_ff5.ols <- data1.nested |>
 beta_ff5.ols <- beta_ff5.ols |>
   rename(mkt_FF5.OLS = mkt_excess, smb_FF5.OLS = smb, hml_FF5.OLS = hml, rmw_FF5.OLS= rmw, cma_FF5.OLS = cma)
 
-dbWriteTable(int,
-             "BETAS",
-             value = beta_ff5.ols,
-             overwrite = TRUE
-)
+
 
 ##
 # 1.2 INT (A) [downloaded HML_INT, and RMW "new"]
 
 
+data2 <- tbl(int,"factors + crsp FULL") |>
+  select(permno, industry, month, ret_excess, mkt_excess,smb, hml_int, rmw_int, cma_int)|>
+  collect()
+
+data2 <- data2|>
+  rename(hml = hml_int, rmw = rmw_int, cma = cma_int)
+
+data2.nested <- data2 |>
+  nest(data = c(month, ret_excess, mkt_excess, smb, hml, rmw, cma))
+data2.nested
+
+beta_int.ols <- data1.nested |>
+  mutate(beta = future_map(
+    data, ~ roll_ff5.ols(., months = 36, min_obs = 24)
+  )) |>
+  unnest(c(beta)) |>
+  select(permno, month, mkt_excess, smb, hml, rmw, cma) |>
+  drop_na()
+
+
+beta_int.ols <- beta_int.ols |>
+  rename(mkt_INT.OLS = mkt_excess, smb_INT.OLS = smb, hml_INT.OLS = hml, rmw_INT.OLS = rmw, cma_INT.OLS = cma)
+
+
+beta2 <- beta_ff5.ols |>
+  inner_join(beta_int.ols, by = c("permno","month"))
+
+
+dbWriteTable(int,
+             "BETAS",
+             value = beta2,
+             overwrite = TRUE
+)
 
 
 
 
 
 
+library(gmm)
+
+
+
+
+###
+### 2. GMM Regressions
+###
+
+
+
+# Function to define moment conditions for GMM
+gmm_moments <- function(theta, data) {
+  with(data, {
+    e <- ret_excess - (theta[1] * mkt_excess + theta[2] * smb + theta[3] * hml + theta[4] * rmw + theta[5] * cma)
+    m <- cbind(mkt_excess * e, smb * e, hml * e, rmw * e, cma * e)
+    return(m)
+  })
+}
+
+# Function to estimate GMM parameters
+estimate_ff5_gmm <- function(data, min_obs = 1) {
+  if (nrow(data) < min_obs) {
+    betas <- rep(NA, 5)
+  } else {
+    theta_init <- rep(0, 5)  # Initial parameter guesses
+    fit <- gmm(gmm_moments, data = data, x0 = theta_init)
+    betas <- coef(fit)
+  }
+  return(betas)
+}
+
+
+
+# Function to apply rolling window GMM estimation
+roll_ff5_gmm <- function(data, months, min_obs) {
+  data <- data %>%
+    arrange(month)
+  
+  betas <- slide_period_dfr(
+    .x = data,
+    .i = data$month,
+    .period = "month",
+    .f = ~tibble(
+      mkt_excess = estimate_ff5_gmm(., min_obs)[1],
+      smb = estimate_ff5_gmm(., min_obs)[2],
+      hml = estimate_ff5_gmm(., min_obs)[3],
+      rmw = estimate_ff5_gmm(., min_obs)[4],
+      cma = estimate_ff5_gmm(., min_obs)[5]
+    ),
+    .before = months - 1,
+    .complete = FALSE
+  )
+  
+  betas <- betas %>%
+    mutate(month = unique(data$month)) %>%
+    select(month, everything()) # Ensure the month column is included and first
+  
+  return(betas)
+}
+
+
+# Assuming beta_ff5.gmm and beta_int.gmm have columns like permno, month, and factors like mkt_excess, smb, hml, rmw, cma
+
+# Apply rolling GMM for each group
+grouped_data <- groupby(data, [:permno, :industry])
+
+results <- DataFrame()
+for g in grouped_data
+betas_df = roll_ff5_gmm(g, 36, 24)
+betas_df.permno = g.permno[1]
+betas_df.industry = g.industry[1]
+append!(results, betas_df)
+end
+
+#######################################
+
+
+####
+#### FAMA MACBETH STUFF
+####
+library(tidyverse)
+library(RSQLite)
+library(sandwich)
+library(broom)
+
+
+
+
+crsp.ols <- tbl(int, "crsp_monthly") |>
+  select(permno, month, ret_excess) |>
+  collect()
+
+beta.ols <- tbl(int, "BETAS") |>
+  select(month, permno, mkt_FF5.OLS, smb_FF5.OLS, hml_FF5.OLS, rmw_FF5.OLS, cma_FF5.OLS) |>
+  collect()
+
+
+data_fama_macbeth <- beta.ols |>
+  left_join(crsp.ols, by = c("permno", "month")) |>
+  left_join(crsp.ols |>
+              select(permno, month, ret_excess_lead = ret_excess) |>
+              mutate(month = month %m-% months(1)), #Adjusts the month column by subtracting one month. This effectively shifts the ret_excess_lead value to the previous month.
+            by = c("permno", "month")
+  ) |>
+  select(permno, month, ret_excess_lead, mkt_FF5.OLS, smb_FF5.OLS, hml_FF5.OLS, rmw_FF5.OLS, cma_FF5.OLS) |>
+  drop_na()
+
+
+
+
+risk_premiums <- data_fama_macbeth |>
+  nest(data = c(ret_excess_lead, beta, log_mktcap, bm, permno)) |>
+  mutate(estimates = map(
+    data,
+    ~ tidy(lm(ret_excess_lead ~ beta + log_mktcap + bm, data = .x))
+  )) |>
+  unnest(estimates)
+
+price_of_risk <- risk_premiums |>
+  group_by(factor = term) |>
+  summarize(
+    risk_premium = mean(estimate) * 100,
+    t_statistic = mean(estimate) / sd(estimate) * sqrt(n())
+  )
 
 
 
 
 
+regressions_for_newey_west <- risk_premiums |>
+  select(month, factor = term, estimate) |>
+  nest(data = c(month, estimate)) |>
+  mutate(
+    model = map(data, ~ lm(estimate ~ 1, .)),
+    mean = map(model, tidy)
+  )
 
+price_of_risk_newey_west <- regressions_for_newey_west |>
+  mutate(newey_west_se = map_dbl(model, ~ sqrt(NeweyWest(.)))) |>
+  unnest(mean) |>
+  mutate(t_statistic_newey_west = estimate / newey_west_se) |>
+  select(factor,
+         risk_premium = estimate,
+         t_statistic_newey_west
+  )
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+left_join(price_of_risk,
+          price_of_risk_newey_west |>
+            select(factor, t_statistic_newey_west),
+          by = "factor"
+)
+#######################################################################
 
 
 
