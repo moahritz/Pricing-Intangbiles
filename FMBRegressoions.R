@@ -1,16 +1,187 @@
+"
+OK, holy fuck let's try this again without losing literally 2 days worth of work.
+
+All of the relevant Betas should be constructed in this file (that's a lot).
+
+The content is structured as follows
+-functions
+-data
+-beta production
+-graphical illustration/table
+
+for each section
+
+
+-> safe often and proper on github!!!!!!!!!!!!!!
+
+"
+
 library(tidyverse)
 library(RSQLite)
 library(scales)
 library(slider)
 library(furrr)
 
-library(frenchdata)
 
-tidy_finance <- dbConnect(
+
+###
+### SET-UP
+
+int <- dbConnect(
   SQLite(),
   "data/intangible_value_r.sqlite",
   extended_types = TRUE
 )
+
+#set up for parallelization
+n_cores = availableCores() - 1
+plan(multisession, workers = n_cores)
+
+
+###
+### 1. OLS REGRESSIONS
+###
+
+#the functions
+estimate_ff5.ols <- function(data, min_obs = 1) {
+  if (nrow(data) < min_obs) {
+    betas <- rep(NA, 5)
+  } else {
+    fit <- lm(ret_excess ~ mkt_excess + smb + hml + rmw + cma, data = data)
+    betas <- as.numeric(coefficients(fit)[2:6])
+  }
+  return(betas)
+}
+
+roll_ff5.ols <- function(data, months, min_obs) {
+  data <- data |>
+    arrange(month)
+  
+  betas <- slide_period_dfr(
+    .x = data,
+    .i = data$month,
+    .period = "month",
+    .f = ~tibble(
+      mkt_excess = estimate_ff5.ols(., min_obs)[1],
+      smb = estimate_ff5.ols(., min_obs)[2],
+      hml = estimate_ff5.ols(., min_obs)[3],
+      rmw = estimate_ff5.ols(., min_obs)[4],
+      cma = estimate_ff5.ols(., min_obs)[5],
+    )
+    ,
+    .before = months - 1,
+    .complete = FALSE
+  )
+  betas <- betas |>
+    mutate(month = unique(data$month))|>
+    select(month, everything())
+  
+  return(betas)
+}
+
+###
+## 1.1 FF5
+
+data1 <- tbl(int,"factors + crsp FULL") |>
+  select(permno, industry, month, ret_excess, mkt_excess,smb, hml, rmw, cma)|>
+  collect()
+
+data1.nested <- data1 |>
+  nest(data = c(month, ret_excess, mkt_excess, smb, hml, rmw, cma))
+data1.nested
+
+beta_ff5.ols <- data1.nested |>
+  mutate(beta = future_map(
+    data, ~ roll_ff5.ols(., months = 36, min_obs = 24)
+  )) |>
+  unnest(c(beta)) |>
+  select(permno, month, mkt_excess, smb, hml, rmw, cma) |>
+  drop_na()
+
+
+beta_ff5.ols <- beta_ff5.ols |>
+  rename(mkt_FF5.OLS = mkt_excess, smb_FF5.OLS = smb, hml_FF5.OLS = hml, rmw_FF5.OLS= rmw, cma_FF5.OLS = cma)
+
+dbWriteTable(int,
+             "BETAS",
+             value = beta_ff5.ols,
+             overwrite = TRUE
+)
+
+##
+# 1.2 INT (A) [downloaded HML_INT, and RMW "new"]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 factors_ff3_monthly_raw <- download_french_data("Fama/French 3 Factors")
@@ -226,6 +397,58 @@ dbWriteTable(tidy_finance,
              value = beta_monthly,
              overwrite = TRUE
 )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
