@@ -64,6 +64,67 @@ MY BROTHER IN CHRIST: we forgot about the market factor. (did we?) -> check this
 [ ] The Liquidity Factor
 
 
+
+
+
+## A Factor Model
+
+Regressing the excess returns stock returns on different "factors" that have proven to carry explanatory power:
+
+\[
+Return_{i,t} = \alpha_i  + \beta_{i,t}^{MKT} (R^{MKT}_t - R^f_t) + \beta_{i,t}^{SZ} SIZE_t + \beta_{i,t}^{BM} HML_t
+\]
+
+\[
++ \beta_{i,t}^{OP} RMW_t + \beta_{i,t}^{INV} CMA_t  + \epsilon_{i,t}
+\]
+
+The Standard FF-3 Factor Model:
+1. Excess Market Return
+2. Firm Size
+3. Book-to-Market Equity Ratio
+
+The FF-5 Factor Model:
+4. Operating Profitability
+5. Firm's Investments
+
+## Factor Composition
+
+Model: \(Y = MKT + SIZE + HML + RMW + CMA\)
+
+\[
+\begin{aligned}
+HML_{FF} & \rightarrow HML_{INT} & \text{[Eisfeldt e.a., 2021]} \\ 
+RMW_{FF} & \rightarrow RMW_{INT} & \text{[Wang, 2023]} \\
+CMA_{FF} & \rightarrow CMA_{INT} & \text{[Jagannathan e.a., 2023]}
+\end{aligned}
+\]
+
+E.g., the composition of the \(HML_{INT}\) factor is:
+
+\[
+BE^{INT}_{i,t} = BE^{FF}_{i,t} - GDWL_{i,t} + INT_{i,t}
+\]
+
+\[
+INT_{i,t} =  (1-\delta) INT_{i,t-1} + SG\&A_{it},
+\]
+
+where \(INT_{i,0} = SG\&A_{i1}/(g +\delta),
+\]
+
+with \( g = 0.1 \) and a proposed \(\delta = 0.2\) from [Eisfeldt & Papanikolau, 2014].
+
+
+
+
+
+
+
+
+
+
+
 ## Reproduction of Factors
 ```{r smb_reproduction, echo=FALSE }
 smb.rep_plot

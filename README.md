@@ -51,6 +51,44 @@ check this straight after coming back from the doc!
 
 \[ \] The Liquidity Factor
 
+## A Factor Model
+
+Regressing the excess returns stock returns on different “factors” that
+have proven to carry explanatory power:
+
+*R**e**t**u**r**n*<sub>*i*, *t*</sub> = *α*<sub>*i*</sub> + *β*<sub>*i*, *t*</sub><sup>*M**K**T*</sup>(*R*<sub>*t*</sub><sup>*M**K**T*</sup>−*R*<sub>*t*</sub><sup>*f*</sup>) + *β*<sub>*i*, *t*</sub><sup>*S**Z*</sup>*S**I**Z**E*<sub>*t*</sub> + *β*<sub>*i*, *t*</sub><sup>*B**M*</sup>*H**M**L*<sub>*t*</sub>
+
+ + *β*<sub>*i*, *t*</sub><sup>*O**P*</sup>*R**M**W*<sub>*t*</sub> + *β*<sub>*i*, *t*</sub><sup>*I**N**V*</sup>*C**M**A*<sub>*t*</sub> + *ϵ*<sub>*i*, *t*</sub>
+
+The Standard FF-3 Factor Model: 1. Excess Market Return 2. Firm Size 3.
+Book-to-Market Equity Ratio
+
+The FF-5 Factor Model: 4. Operating Profitability 5. Firm’s Investments
+
+## Factor Composition
+
+Model:
+*Y* = *M**K**T* + *S**I**Z**E* + *H**M**L* + *R**M**W* + *C**M**A*
+
+$$
+\begin{aligned}
+HML\_{FF} & \rightarrow HML\_{INT} & \text{\[Eisfeldt e.a., 2021\]} \\ 
+RMW\_{FF} & \rightarrow RMW\_{INT} & \text{\[Wang, 2023\]} \\
+CMA\_{FF} & \rightarrow CMA\_{INT} & \text{\[Jagannathan e.a., 2023\]}
+\end{aligned}
+$$
+
+E.g., the composition of the *H**M**L*<sub>*I**N**T*</sub> factor is:
+
+*B**E*<sub>*i*, *t*</sub><sup>*I**N**T*</sup> = *B**E*<sub>*i*, *t*</sub><sup>*F**F*</sup> − *G**D**W**L*<sub>*i*, *t*</sub> + *I**N**T*<sub>*i*, *t*</sub>
+
+*I**N**T*<sub>*i*, *t*</sub> = (1−*δ*)*I**N**T*<sub>*i*, *t* − 1</sub> + *S**G*&*A*<sub>*i**t*</sub>,
+
+where (INT\_{i,0} = SG&A\_{i1}/(g +), \]
+
+with *g* = 0.1 and a proposed *δ* = 0.2 from \[Eisfeldt & Papanikolau,
+2014\].
+
 ## Reproduction of Factors
 
 ![](README_files/figure-markdown_strict/smb_reproduction-1.png)
