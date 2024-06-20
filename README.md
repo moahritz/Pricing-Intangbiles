@@ -60,10 +60,19 @@ have proven to carry explanatory power:
 
  + *β*<sub>*i*, *t*</sub><sup>*O**P*</sup>*R**M**W*<sub>*t*</sub> + *β*<sub>*i*, *t*</sub><sup>*I**N**V*</sup>*C**M**A*<sub>*t*</sub> + *ϵ*<sub>*i*, *t*</sub>
 
-The Standard FF-3 Factor Model: 1. Excess Market Return 2. Firm Size 3.
-Book-to-Market Equity Ratio
+#### The Standard FF-3 Factor Model:
 
-The FF-5 Factor Model: 4. Operating Profitability 5. Firm’s Investments
+1.  Excess Market Return
+
+2.  Firm Size
+
+3.  Book-to-Market Equity Ratio
+
+#### The FF-5 Factor Model:
+
+1.  Operating Profitability
+
+2.  Firm’s Investments
 
 ## Factor Composition
 
@@ -445,11 +454,46 @@ F Statistic (df = 1; 328)
 
 ## The intangible Factors
 
-![](README_files/figure-markdown_strict/hml_factor-1.png)
+### Adjusted Book-Market Factor
 
+![](README_files/figure-markdown_strict/hml_factor-1.png) A comparison
+of factors with and without industry specific intangible capital
+depreciation rates
 ![](README_files/figure-markdown_strict/hml_int-1.png)
 
-![](README_files/figure-markdown_strict/rmw_factor-1.png)
+![](README_files/figure-markdown_strict/rmw_factor-1.png) \### Adjusted
+Profitability Factor
+
+The adjusted profitability factor, based on the methodology from
+Jagannathan, Korajczyk, and Wang (2023), is computed using Compustat
+data as follows:
+
+1.  **Revenue (REVT)**
+2.  **Minus Cost of Goods Sold (COGS)**
+3.  **Minus Selling, General and Administrative Expenses (XSGA)**
+4.  **Plus Research and Development Expenses (XRD)**
+5.  **Divided by Total Assets (AT)**
+
+This can be expressed with the following formula:
+
+$$ \text{Operating Profitability} = \frac{REVT - COGS - XSGA + XRD}{AT} $$
+
+For the purposes of the adjusted profitability factor, they considered
+different levels of SG&A adjustment. The factor with the highest
+explanatory power added 30% of SG&A expenses, formulated as:
+
+$$ \text{Adjusted Profitability} = \frac{REVT - COGS - (0.7 \times XSGA) + XRD}{AT} $$
+
+According to the authors his adjustment improves the predictive power of
+the profitability measure by capturing investments in intangibles, which
+are immediately expensed under GAAP but should be considered investments
+in future profitability .
+
+BUT, the authors divide by total assets without adjusting for them
+(asset adjustment is only proposed in the Wang (2023) paper, which
+wasn’t published at the time). Once they are properly adjusted and all
+variables are taking care of the intangibles, the factor performance has
+a salient decrease.
 
 ![](README_files/figure-markdown_strict/rmw_OLD-1.png)
 
