@@ -10,6 +10,7 @@ source("TestPlots.R")
 #source("AdditionalData.R")
 source("TestTables.R")
 source("FullDataSet.R")
+source("FMBRegressoions.R")
 
 ```
 
@@ -264,7 +265,15 @@ Get the time-series average
 
 $$ \frac{1}{T} \sum_{t=1}^T \hat{\lambda}_t^f $$
 of the averages $\hat{\lambda}_t^f$ which then can be interpreted as the risk premium for the specific risk factor f
+```{r risk premium, echo = FALSE}
+ff_premium
 
+```
+
+```{r risk premium int, echo = FALSE}
+int_premium
+
+```
 
 # State-Space Model
 

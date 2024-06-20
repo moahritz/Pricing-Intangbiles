@@ -559,6 +559,26 @@ $$ \frac{1}{T} \sum\_{t=1}^T \hat{\lambda}\_t^f $$
 of the averages *λ̂*<sub>*t*</sub><sup>*f*</sup> which then can be
 interpreted as the risk premium for the specific risk factor f
 
+    ## # A tibble: 6 × 4
+    ##   factor      risk_premium.ff t_statistic.ff t_statistic_newey_west_ff
+    ##   <chr>                 <dbl>          <dbl>                     <dbl>
+    ## 1 (Intercept)           1.64           2.82                      2.91 
+    ## 2 cma_FF5.OLS          -0.353         -0.774                    -1.22 
+    ## 3 hml_FF5.OLS          -1.14          -1.76                     -1.66 
+    ## 4 mkt_FF5.OLS          -0.427         -1.02                     -0.899
+    ## 5 rmw_FF5.OLS           0.205          0.584                     0.752
+    ## 6 smb_FF5.OLS          -0.187         -0.245                    -0.237
+
+    ## # A tibble: 6 × 4
+    ##   factor      risk_premium.int t_statistic.int t_statistic_newey_west_int
+    ##   <chr>                  <dbl>           <dbl>                      <dbl>
+    ## 1 (Intercept)           0.0748           0.149                      0.164
+    ## 2 cma_INT.OLS           0.0528           0.111                      0.104
+    ## 3 hml_INT.OLS          -3.21            -0.144                     -0.146
+    ## 4 mkt_INT.OLS           1.24             2.36                       2.50 
+    ## 5 rmw_INT.OLS          -0.0780          -0.251                     -0.246
+    ## 6 smb_INT.OLS           0.667            1.89                       1.82
+
 # State-Space Model
 
 Define the state-space model with liquidity influencing the factor

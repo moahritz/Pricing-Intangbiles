@@ -91,7 +91,7 @@ price_of_risk_newey_west_ff1 <- regressions_for_newey_west_ff1 |>
 
 ff_premium <- left_join(price_of_risk_ff1,
           price_of_risk_newey_west_ff1 |>
-            select(factor, t_statistic_newey_west_ff1),
+            select(factor, t_statistic_newey_west_ff),
           by = "factor"
 )
 
