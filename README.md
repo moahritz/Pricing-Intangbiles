@@ -84,9 +84,9 @@ E.g., the composition of the *H**M**L*<sub>*I**N**T*</sub> factor is:
 
 *I**N**T*<sub>*i*, *t*</sub> = (1−*δ*)*I**N**T*<sub>*i*, *t* − 1</sub> + *S**G*&*A*<sub>*i**t*</sub>,
 
-where (INT\_{i,0} = SG&A\_{i1}/(g +), \]
+where *I**N**T*<sub>*i*, 0</sub> = *S**G*&*A*<sub>*i*1</sub>/(*g*+*δ*),
 
-with *g* = 0.1 and a proposed *δ* = 0.2 from \[Eisfeldt & Papanikolau,
+with $ g = 0.1 $ and a proposed *δ* = 0.2 from \[Eisfeldt & Papanikolau,
 2014\].
 
 ## Reproduction of Factors
