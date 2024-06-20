@@ -477,7 +477,7 @@ $$ \frac{1}{T} \sum\_{t=1}^T \hat{\lambda}\_t^f $$
 of the averages *λ̂*<sub>*t*</sub><sup>*f*</sup> which then can be
 interpreted as the risk premium for the specific risk factor f
 
-\#State-Space Model
+# State-Space Model
 
 Define the state-space model with liquidity influencing the factor
 loadings. The state-space particle filter approach is beneficial,
@@ -549,9 +549,9 @@ factors and lagged liquidity as instruments.
 
 ## GMM Setup
 
-Instead of Cross sectional OLS/WLS regression, the GMM framework allows
-for a continuation of non-Gaussian analysis. Define the moment
-conditions for the cross-sectional GMM:
+Instead of Cross sectional OLS/WLS regression for the Fama-Macbeth
+system, the GMM framework allows for a continuation of non-Gaussian
+analysis. Define the moment conditions for the cross-sectional GMM:
 
 \[ E\[z\_{t-1} (R\_{i,t} - *{0,i} - *{j=1}^5 *{j,i} F*{j,t})\] = 0\]
 
