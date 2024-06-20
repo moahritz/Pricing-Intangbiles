@@ -461,8 +461,9 @@ of factors with and without industry specific intangible capital
 depreciation rates
 ![](README_files/figure-markdown_strict/hml_int-1.png)
 
-![](README_files/figure-markdown_strict/rmw_factor-1.png) \### Adjusted
-Profitability Factor
+![](README_files/figure-markdown_strict/rmw_factor-1.png)
+
+### Adjusted Profitability Factor
 
 The adjusted profitability factor, based on the methodology from
 Jagannathan, Korajczyk, and Wang (2023), is computed using Compustat

@@ -178,6 +178,7 @@ hml.int_plot
 rmw.fs_plot 
 
 ```
+
 ### Adjusted Profitability Factor
 
 The adjusted profitability factor, based on the methodology from Jagannathan, Korajczyk, and Wang (2023), is computed using Compustat data as follows:
@@ -257,7 +258,7 @@ beta_int.ols
 1. 
 Exposures as explanatory variables in $T$ cross-sectional regressions. Now $r_{i,t}$ represents the excess return.
 
-$$r_{i,t+1} = \alpha_i + \lambda_t^M \beta_{i,t}^M + \lambda_t^{SMB} \beta_{i,t}^{SMB} + \lambda_t^{HML} \beta_{i,t}^{HML} + \lambda_t^{RMW} \beta_{i,t}^{RMW} + + \lambda_t^{CMA} \beta_{i,t}^{CMA}$$
+$$ r_{i,t+1} = \alpha_i + \lambda_t^M \beta_{i,t}^M + \lambda_t^{SMB} \beta_{i,t}^{SMB} + \lambda_t^{HML} \beta_{i,t}^{HML} + \lambda_t^{RMW}\beta_{i,t}^{RMW} + + \lambda_t^{CMA} \beta_{i,t}^{CMA}$$
 
 This gives us the estimator of interest: the compensation$\lambda_t^f$ for the exposure to each risk factor $\beta_{i,t}^f$ at each point in time (THE RISK PREMIUM)
 
