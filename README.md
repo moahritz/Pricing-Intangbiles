@@ -476,7 +476,7 @@ data as follows:
 
 This can be expressed with the following formula:
 
-$$ \text{Operating Profitability} = \frac{REVT - COGS - XSGA + XRD}{AT} $$
+$$ \text{Operating Profitability} = \frac{REVT - COGS - XSGA - DP}{BE} $$
 
 For the purposes of the adjusted profitability factor, they considered
 different levels of SG&A adjustment. The factor with the highest
@@ -491,9 +491,10 @@ in future profitability .
 
 BUT, the authors divide by total assets without adjusting for them
 (asset adjustment is only proposed in the Wang (2023) paper, which
-wasn’t published at the time). Once they are properly adjusted and all
-variables are taking care of the intangibles, the factor performance has
-a salient decrease.
+wasn’t published at the time), by arguing that total assets (AT) already
+include tangibles and intangibles. Once they are properly adjusted and
+all variables are taking care of the intangibles, the factor performance
+has a salient decrease.
 
 ![](README_files/figure-markdown_strict/rmw_OLD-1.png)
 
@@ -528,7 +529,7 @@ a salient decrease.
 
 # Fama-Macbeth Regressions
 
-To garuantee comparability of the results the excess returns analysed
+To guarantee comparability of the results the excess returns analysed
 are from the different industry portfolios according to K. French’s
 website.
 

@@ -190,7 +190,7 @@ The adjusted profitability factor, based on the methodology from Jagannathan, Ko
 
 This can be expressed with the following formula:
 
-$$ \text{Operating Profitability} = \frac{REVT - COGS - XSGA + XRD}{AT} $$
+$$ \text{Operating Profitability} = \frac{REVT - COGS - XSGA - DP}{BE} $$
 
 For the purposes of the adjusted profitability factor, they considered different levels of SG&A adjustment. The factor with the highest explanatory power added 30% of SG&A expenses, formulated as:
 
@@ -198,7 +198,7 @@ $$ \text{Adjusted Profitability} = \frac{REVT - COGS - (0.7 \times XSGA) + XRD}{
 
 According to the authors his adjustment improves the predictive power of the profitability measure by capturing investments in intangibles, which are immediately expensed under GAAP but should be considered investments in future profitability .
 
-BUT, the authors divide by total assets without adjusting for them (asset adjustment is only proposed in the Wang (2023) paper, which wasn't published at the time). Once they are properly adjusted and all variables are taking care of the intangibles, the factor performance has a salient decrease.
+BUT, the authors divide by total assets without adjusting for them (asset adjustment is only proposed in the Wang (2023) paper, which wasn't published at the time), by arguing that total assets (AT) already include tangibles and intangibles. Once they are properly adjusted and all variables are taking care of the intangibles, the factor performance has a salient decrease.
 
 
 ```{r rmw_OLD, echo=FALSE }
@@ -240,7 +240,7 @@ fmb.data
 # Fama-Macbeth Regressions
 
 
-To garuantee comparability of the results the excess returns analysed are from the different industry portfolios according to K. French's website.
+To guarantee comparability of the results the excess returns analysed are from the different industry portfolios according to K. French's website.
 
 0.
 Producing the $\beta's$:
@@ -248,8 +248,13 @@ Producing the $\beta's$:
 $$ r_{i,t} -  r_{f,t}= \alpha + \sum^k_{j = 1}\beta_{i,j} f_{i,t} + \epsilon_{i,t}, $$
 
 where $f = (HML, SMB, RMW, CMA)$. 
+```{r ff betas, echo = FALSE}
+beta_ff.ols
 
-
+```
+```{r ff betas, echo = FALSE}
+beta_int.ols
+```
 1. 
 Exposures as explanatory variables in $T$ cross-sectional regressions. Now $r_{i,t}$ represents the excess return.
 
