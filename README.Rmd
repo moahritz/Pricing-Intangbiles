@@ -247,10 +247,9 @@ Producing the $\beta's$:
 
 $$ r_{i,t} -  r_{f,t}= \alpha + \sum^k_{j = 1}\beta_{i,j} f_{i,t} + \epsilon_{i,t}, $$
 
-where $f = (HML, SMB, RMW, CMA)$. 
+where $f = (H M L, S M B, RMW, CMA)$. 
 ```{r ff betas, echo = FALSE}
 beta_ff.ols
-
 ```
 ```{r int betas, echo = FALSE}
 beta_int.ols
