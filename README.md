@@ -578,10 +578,10 @@ where *f* = (*H**M**L*,*S**M**B*,*R**M**W*,*C**M**A*).
 
 *r*<sub>*i*, *t* + 1</sub> = *α*<sub>*i*</sub> + *λ*<sub>*t*</sub><sup>*M*</sup>*β*<sub>*i*, *t*</sub><sup>*M*</sup> + *λ*<sub>*t*</sub><sup>*S**M**B*</sup>*β*<sub>*i*, *t*</sub><sup>*S**M**B*</sup> + *λ*<sub>*t*</sub><sup>*H**M**L*</sup>*β*<sub>*i*, *t*</sub><sup>*H**M**L*</sup> + *λ*<sub>*t*</sub><sup>*R**M**W*</sup>*β*<sub>*i*, *t*</sub><sup>*R**M**W*</sup> +  + *λ*<sub>*t*</sub><sup>*C**M**A*</sup>*β*<sub>*i*, *t*</sub><sup>*C**M**A*</sup>
 
-This gives us the estimator of interest: the
-compensation*λ*<sub>*t*</sub><sup>*f*</sup> for the exposure to each
-risk factor *β*<sub>*i*, *t*</sub><sup>*f*</sup> at each point in time
-(THE RISK PREMIUM)
+This gives us the estimator of interest: the compensation
+*λ*<sub>*t*</sub><sup>*f*</sup> for the exposure to each risk factor
+*β*<sub>*i*, *t*</sub><sup>*f*</sup> at each point in time (THE RISK
+PREMIUM)
 
 If there is a linear relationship between expected returns and the
 characteristic in a given month, we expect the regression coefficient to
@@ -673,7 +673,7 @@ Resample the particles based on their weights to avoid degeneracy.
 Estimate the state at each time step by taking the weighted average of
 the particles.
 
-*α̂**j*, *t* = ∑*n* = 1<sup>*N*</sup>*w̃**t*<sup>*n*</sup> ⋅ *α**j*, *t*<sup>*n*</sup>
+*α̂**j*, *t* = ∑*n* = 1<sup>*N*</sup>*w̃**t*<sup>*n*</sup> ⋅ *α*<sub>*j*, *t*</sub><sup>*n*</sup>
 
 # Cross-Sectional GMM Regression
 

@@ -260,7 +260,7 @@ Exposures as explanatory variables in $T$ cross-sectional regressions. Now $r_{i
 
 $$ r_{i,t+1} = \alpha_i + \lambda_t^M \beta_{i,t}^M + \lambda_t^{SMB} \beta_{i,t}^{SMB} + \lambda_t^{HML} \beta_{i,t}^{HML} + \lambda_t^{RMW}\beta_{i,t}^{RMW} + + \lambda_t^{CMA} \beta_{i,t}^{CMA}$$
 
-This gives us the estimator of interest: the compensation$\lambda_t^f$ for the exposure to each risk factor $\beta_{i,t}^f$ at each point in time (THE RISK PREMIUM)
+This gives us the estimator of interest: the compensation $\lambda_t^f$ for the exposure to each risk factor $\beta_{i,t}^f$ at each point in time (THE RISK PREMIUM)
 
 If there is a linear relationship between expected returns and the characteristic in a given month, we expect the regression coefficient to reflect the relationship, i.e., $\lambda_t^f \neq 0$.
 
@@ -341,7 +341,7 @@ Resample the particles based on their weights to avoid degeneracy.
 Estimate the state at each time step by taking the weighted average of the particles.
 
 
-$$\hat{\alpha}{j,t} = \sum{n=1}^N \tilde{w}t^n \cdot \alpha{j,t}^n$$
+$$\hat{\alpha}{j,t} = \sum{n=1}^N \tilde{w} t^n \cdot \alpha_{j,t}^n $$
 
 
 # Cross-Sectional GMM Regression
