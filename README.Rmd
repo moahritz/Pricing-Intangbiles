@@ -10,6 +10,7 @@ source("TestPlots.R")
 #source("AdditionalData.R")
 source("TestTables.R")
 source("FullDataSet.R")
+
 ```
 
 ## Pricing-Intangibles
@@ -150,3 +151,114 @@ liq.ms_plot
 fmb.data
 
 ```
+
+
+# Fama-Macbeth Regressions
+
+
+To garuantee comparability of the results the excess returns analysed are from the different industry portfolios according to K. French's website.
+
+0.
+Producing the $\beta's$:
+
+$$ r_{i,t} -  r_{f,t}= \alpha + \sum^k_{j = 1}\beta_{i,j} f_{i,t} + \epsilon_{i,t}, $$
+
+where $f = (HML, SMB, RMW, CMA)$. 
+
+
+1. 
+Exposures as explanatory variables in $T$ cross-sectional regressions. Now $r_{i,t}$ represents the excess return.
+
+$$r_{i,t+1} = \alpha_i + \lambda_t^M \beta_{i,t}^M + \lambda_t^{SMB} \beta_{i,t}^{SMB} + \lambda_t^{HML} \beta_{i,t}^{HML} + \lambda_t^{RMW} \beta_{i,t}^{RMW} + + \lambda_t^{CMA} \beta_{i,t}^{CMA}$$
+
+This gives us the estimator of interest: the compensation$\lambda_t^f$ for the exposure to each risk factor $\beta_{i,t}^f$ at each point in time (THE RISK PREMIUM)
+
+If there is a linear relationship between expected returns and the characteristic in a given month, we expect the regression coefficient to reflect the relationship, i.e., $\lambda_t^f \neq 0$.
+
+
+2.
+Get the time-series average 
+
+$$ \frac{1}{T} \sum_{t=1}^T \hat{\lambda}_t^f $$
+of the averages $\hat{\lambda}_t^f$ which then can be interpreted as the risk premium for the specific risk factor f
+
+
+#State-Space Model
+
+Define the state-space model with liquidity influencing the factor loadings. The state-space particle filter approach is beneficial, because of the inclusion of the latent liquidity influence, but also because it allows me to produce entire distributions of the factor exposures independently from how they are distributed (i.e, not only point estimator under Gaussian distribution). This can produce valuable insights on the factor exposure dynamics. 
+
+## State Equation
+
+The state equation models the latent influence of liquidity on the factor exposures.
+
+[
+\alpha_{j,t} = \alpha_{j,t-1} + \delta_j \cdot L_t + \epsilon_{j,t}, \quad \epsilon_{j,t} \sim \mathcal{N}(0, \sigma_{\alpha_j}^2)
+]
+
+## Observation Equation
+
+The observation equation models the returns as a function of the Fama-French five factors, with the factor loadings influenced by the latent state.
+
+[
+R_{i,t} = \beta_{0,i} + \sum_{j=1}^5 (\beta_{j,i} + \gamma_j \cdot \alpha_{j,t}) F_{j,t} + \eta_{i,t}, \quad \eta_{i,t} \sim \mathcal{N}(0, \sigma_R^2)
+]
+
+# Particle Filter Process
+
+## Initialization
+
+Initialize (N) particles representing the initial belief about the latent influences of liquidity.
+
+
+## Prediction Step
+
+Propagate each particle according to the state equation.
+
+[
+\alpha_{j,t}^n = \alpha_{j,t-1}^n + \delta_j \cdot L_t + \epsilon_{j,t}^n, \quad \epsilon_{j,t}^n \sim \mathcal{N}(0, \sigma_{\alpha_j}^2), \quad \forall n
+]
+
+## Update Step
+
+Update the weights of each particle based on the observation equation.
+
+[
+w_t^n = w_{t-1}^n \cdot \prod_{i=1}^M p(R_{i,t} | \alpha_{1,t}^n, \alpha_{2,t}^n, \ldots, \alpha_{5,t}^n, \theta), \quad \forall n
+]
+
+## Normalization
+
+Normalize the weights:
+
+[
+\tilde{w}t^n = \frac{w_t^n}{\sum{j=1}^N w_t^j}, \quad \forall n
+]
+
+## Resampling
+
+Resample the particles based on their weights to avoid degeneracy.
+
+## Estimation
+
+Estimate the state at each time step by taking the weighted average of the particles.
+
+[
+\hat{\alpha}{j,t} = \sum{n=1}^N \tilde{w}t^n \cdot \alpha{j,t}^n
+]
+
+# Cross-Sectional GMM Regression
+
+Use the estimated factor loadings from the particle filter as the dependent variables in the cross-sectional regression, with lagged factors and lagged liquidity as instruments.
+
+## GMM Setup
+
+Instead of Cross sectional OLS/WLS regression, the GMM framework allows for a continuation of non-Gaussian analysis. 
+Define the moment conditions for the cross-sectional GMM:
+
+[
+E[z_{t-1} \cdot (R_{i,t} - \beta_{0,i} - \sum_{j=1}^5 \beta_{j,i} F_{j,t})] = 0
+]
+
+where (z_{t-1}) are the instruments (lagged factors and lagged liquidity).
+
+

@@ -443,3 +443,117 @@ F Statistic (df = 1; 328)
     ## #   rmw_replicated <dbl>, cma_replicated <dbl>, smb_int_replicated <dbl>,
     ## #   hml_int_replicated <dbl>, rmw_int <dbl>, rmw_intOLD <dbl>, cma_int <dbl>,
     ## #   AggLiq <dbl>, LiqInno <dbl>, LiqTrad <dbl>, hml_int <dbl>
+
+# Fama-Macbeth Regressions
+
+To garuantee comparability of the results the excess returns analysed
+are from the different industry portfolios according to K. French’s
+website.
+
+1.  Producing the *β*′*s*:
+
+$$ r\_{i,t} -  r\_{f,t}= \alpha + \sum^k\_{j = 1}\beta\_{i,j} f\_{i,t} + \epsilon\_{i,t}, $$
+
+where *f* = (*H**M**L*,*S**M**B*,*R**M**W*,*C**M**A*).
+
+1.  Exposures as explanatory variables in *T* cross-sectional
+    regressions. Now *r*<sub>*i*, *t*</sub> represents the excess
+    return.
+
+*r*<sub>*i*, *t* + 1</sub> = *α*<sub>*i*</sub> + *λ*<sub>*t*</sub><sup>*M*</sup>*β*<sub>*i*, *t*</sub><sup>*M*</sup> + *λ*<sub>*t*</sub><sup>*S**M**B*</sup>*β*<sub>*i*, *t*</sub><sup>*S**M**B*</sup> + *λ*<sub>*t*</sub><sup>*H**M**L*</sup>*β*<sub>*i*, *t*</sub><sup>*H**M**L*</sup> + *λ*<sub>*t*</sub><sup>*R**M**W*</sup>*β*<sub>*i*, *t*</sub><sup>*R**M**W*</sup> +  + *λ*<sub>*t*</sub><sup>*C**M**A*</sup>*β*<sub>*i*, *t*</sub><sup>*C**M**A*</sup>
+
+This gives us the estimator of interest: the
+compensation*λ*<sub>*t*</sub><sup>*f*</sup> for the exposure to each
+risk factor *β*<sub>*i*, *t*</sub><sup>*f*</sup> at each point in time
+(THE RISK PREMIUM)
+
+If there is a linear relationship between expected returns and the
+characteristic in a given month, we expect the regression coefficient to
+reflect the relationship, i.e., *λ*<sub>*t*</sub><sup>*f*</sup> ≠ 0.
+
+1.  Get the time-series average
+
+$$ \frac{1}{T} \sum\_{t=1}^T \hat{\lambda}\_t^f $$
+of the averages *λ̂*<sub>*t*</sub><sup>*f*</sup> which then can be
+interpreted as the risk premium for the specific risk factor f
+
+\#State-Space Model
+
+Define the state-space model with liquidity influencing the factor
+loadings. The state-space particle filter approach is beneficial,
+because of the inclusion of the latent liquidity influence, but also
+because it allows me to produce entire distributions of the factor
+exposures independently from how they are distributed (i.e, not only
+point estimator under Gaussian distribution). This can produce valuable
+insights on the factor exposure dynamics.
+
+## State Equation
+
+The state equation models the latent influence of liquidity on the
+factor exposures.
+
+\[ *{j,t} = *{j,t-1} + *j L\_t + *{j,t}, *{j,t} (0, *{\_j}^2)\]
+
+## Observation Equation
+
+The observation equation models the returns as a function of the
+Fama-French five factors, with the factor loadings influenced by the
+latent state.
+
+\[ R\_{i,t} = *{0,i} + *{j=1}^5 (*{j,i} + *j *{j,t}) F*{j,t} + *{i,t},
+*{i,t} (0, \_R^2)\]
+
+# Particle Filter Process
+
+## Initialization
+
+Initialize (N) particles representing the initial belief about the
+latent influences of liquidity.
+
+## Prediction Step
+
+Propagate each particle according to the state equation.
+
+\[ *{j,t}^n = *{j,t-1}^n + *j L\_t + *{j,t}^n, *{j,t}^n (0, *{\_j}^2),
+n\]
+
+## Update Step
+
+Update the weights of each particle based on the observation equation.
+
+\[ w\_t^n = w\_{t-1}^n *{i=1}^M p(R*{i,t} | *{1,t}^n, *{2,t}^n, ,
+\_{5,t}^n, ), n\]
+
+## Normalization
+
+Normalize the weights:
+
+\[ t^n = , n\]
+
+## Resampling
+
+Resample the particles based on their weights to avoid degeneracy.
+
+## Estimation
+
+Estimate the state at each time step by taking the weighted average of
+the particles.
+
+\[ = ^N t^n ^n\]
+
+# Cross-Sectional GMM Regression
+
+Use the estimated factor loadings from the particle filter as the
+dependent variables in the cross-sectional regression, with lagged
+factors and lagged liquidity as instruments.
+
+## GMM Setup
+
+Instead of Cross sectional OLS/WLS regression, the GMM framework allows
+for a continuation of non-Gaussian analysis. Define the moment
+conditions for the cross-sectional GMM:
+
+\[ E\[z\_{t-1} (R\_{i,t} - *{0,i} - *{j=1}^5 *{j,i} F*{j,t})\] = 0\]
+
+where (z\_{t-1}) are the instruments (lagged factors and lagged
+liquidity).
