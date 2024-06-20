@@ -252,7 +252,7 @@ where $f = (HML, SMB, RMW, CMA)$.
 beta_ff.ols
 
 ```
-```{r ff betas, echo = FALSE}
+```{r int betas, echo = FALSE}
 beta_int.ols
 ```
 1. 

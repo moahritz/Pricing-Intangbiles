@@ -539,6 +539,38 @@ $$ r\_{i,t} -  r\_{f,t}= \alpha + \sum^k\_{j = 1}\beta\_{i,j} f\_{i,t} + \epsilo
 
 where *f* = (*H**M**L*,*S**M**B*,*R**M**W*,*C**M**A*).
 
+    ## # A tibble: 3,322 × 7
+    ##    month      industry  mkt_FF5.OLS smb_FF5.OLS hml_FF5.OLS rmw_FF5.OLS
+    ##    <date>     <chr>           <dbl>       <dbl>       <dbl>       <dbl>
+    ##  1 1998-06-01 Utilities       1.01       0.125       0.113      -0.738 
+    ##  2 1998-07-01 Utilities       1.01       0.114       0.0909     -0.752 
+    ##  3 1998-08-01 Utilities       0.708     -0.0156     -0.380      -0.792 
+    ##  4 1998-09-01 Utilities       0.703     -0.147      -0.528      -1.21  
+    ##  5 1998-10-01 Utilities       0.517     -0.0946     -0.0351     -1.01  
+    ##  6 1998-11-01 Utilities       0.487     -0.0945      0.102      -0.898 
+    ##  7 1998-12-01 Utilities       0.483     -0.104       0.0932     -0.917 
+    ##  8 1999-01-01 Utilities       0.615      0.0427     -0.0151     -0.633 
+    ##  9 1999-02-01 Utilities       0.612      0.226       0.129      -0.0161
+    ## 10 1999-03-01 Utilities       0.613      0.277       0.149       0.144 
+    ## # ℹ 3,312 more rows
+    ## # ℹ 1 more variable: cma_FF5.OLS <dbl>
+
+    ## # A tibble: 3,322 × 7
+    ##    month      industry  mkt_INT.OLS smb_INT.OLS hml_INT.OLS rmw_INT.OLS
+    ##    <date>     <chr>           <dbl>       <dbl>       <dbl>       <dbl>
+    ##  1 1998-06-01 Utilities       0.849   -0.0401      -0.00368      -0.860
+    ##  2 1998-07-01 Utilities       0.857   -0.0296      -0.00385      -0.865
+    ##  3 1998-08-01 Utilities       0.483   -0.173       -0.00982      -0.804
+    ##  4 1998-09-01 Utilities       0.475   -0.214       -0.0107       -0.879
+    ##  5 1998-10-01 Utilities       0.385   -0.160       -0.00788      -0.879
+    ##  6 1998-11-01 Utilities       0.387   -0.154       -0.00797      -0.864
+    ##  7 1998-12-01 Utilities       0.387   -0.154       -0.00800      -0.863
+    ##  8 1999-01-01 Utilities       0.463   -0.130       -0.00714      -0.915
+    ##  9 1999-02-01 Utilities       0.464   -0.0491      -0.00406      -0.802
+    ## 10 1999-03-01 Utilities       0.466   -0.000636    -0.00129      -0.781
+    ## # ℹ 3,312 more rows
+    ## # ℹ 1 more variable: cma_INT.OLS <dbl>
+
 1.  Exposures as explanatory variables in *T* cross-sectional
     regressions. Now *r*<sub>*i*, *t*</sub> represents the excess
     return.
