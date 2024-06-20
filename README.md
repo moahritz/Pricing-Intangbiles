@@ -589,7 +589,8 @@ reflect the relationship, i.e., *λ*<sub>*t*</sub><sup>*f*</sup> ≠ 0.
 
 1.  Get the time-series average
 
-$$ \frac{1}{T} \sum\_{t=1}^T \hat{\lambda}\_t^f $$
+$$\frac{1}{T} \sum\_{t=1}^T \hat{\lambda}\_t^f$$
+
 of the averages *λ̂*<sub>*t*</sub><sup>*f*</sup> which then can be
 interpreted as the risk premium for the specific risk factor f
 
@@ -628,7 +629,7 @@ insights on the factor exposure dynamics.
 The state equation models the latent influence of liquidity on the
 factor exposures.
 
-\[ *{j,t} = *{j,t-1} + *j L\_t + *{j,t}, *{j,t} (0, *{\_j}^2)\]
+*α*<sub>*j*, *t*</sub> = *α*<sub>*j*, *t* − 1</sub> + *δ*<sub>*j*</sub> ⋅ *L*<sub>*t*</sub> + *ϵ*<sub>*j*, *t*</sub>,  *ϵ*<sub>*j*, *t*</sub> ∼ 𝒩(0,*σ*<sub>*α*<sub>*j*</sub></sub><sup>2</sup>)
 
 ## Observation Equation
 
@@ -636,8 +637,7 @@ The observation equation models the returns as a function of the
 Fama-French five factors, with the factor loadings influenced by the
 latent state.
 
-\[ R\_{i,t} = *{0,i} + *{j=1}^5 (*{j,i} + *j *{j,t}) F*{j,t} + *{i,t},
-*{i,t} (0, \_R^2)\]
+$$ R\_{i,t} = \beta\_{0,i} + \sum\_{j=1}^5 (\beta\_{j,i} + \gamma\_j \cdot \alpha\_{j,t}) F\_{j,t} + \eta\_{i,t}, \quad \eta\_{i,t} \sim \mathcal{N}(0, \sigma\_R^2) $$
 
 # Particle Filter Process
 
@@ -650,21 +650,19 @@ latent influences of liquidity.
 
 Propagate each particle according to the state equation.
 
-\[ *{j,t}^n = *{j,t-1}^n + *j L\_t + *{j,t}^n, *{j,t}^n (0, *{\_j}^2),
-n\]
+*α*<sub>*j*, *t*</sub><sup>*n*</sup> = *α*<sub>*j*, *t* − 1</sub><sup>*n*</sup> + *δ*<sub>*j*</sub> ⋅ *L*<sub>*t*</sub> + *ϵ*<sub>*j*, *t*</sub><sup>*n*</sup>,  *ϵ*<sub>*j*, *t*</sub><sup>*n*</sup> ∼ 𝒩(0,*σ*<sub>*α*<sub>*j*</sub></sub><sup>2</sup>),  ∀*n*
 
 ## Update Step
 
 Update the weights of each particle based on the observation equation.
 
-\[ w\_t^n = w\_{t-1}^n *{i=1}^M p(R*{i,t} | *{1,t}^n, *{2,t}^n, ,
-\_{5,t}^n, ), n\]
+$$w\_t^n = w\_{t-1}^n \cdot \prod\_{i=1}^M p(R\_{i,t} | \alpha\_{1,t}^n, \alpha\_{2,t}^n, \ldots, \alpha\_{5,t}^n, \theta), \quad \forall n$$
 
 ## Normalization
 
 Normalize the weights:
 
-\[ t^n = , n\]
+$$\tilde{w}t^n = \frac{w\_t^n}{\sum{j=1}^N w\_t^j}, \quad \forall n$$
 
 ## Resampling
 
@@ -675,7 +673,7 @@ Resample the particles based on their weights to avoid degeneracy.
 Estimate the state at each time step by taking the weighted average of
 the particles.
 
-\[ = ^N t^n ^n\]
+*α̂**j*, *t* = ∑*n* = 1<sup>*N*</sup>*w̃**t*<sup>*n*</sup> ⋅ *α**j*, *t*<sup>*n*</sup>
 
 # Cross-Sectional GMM Regression
 
@@ -689,7 +687,7 @@ Instead of Cross sectional OLS/WLS regression for the Fama-Macbeth
 system, the GMM framework allows for a continuation of non-Gaussian
 analysis. Define the moment conditions for the cross-sectional GMM:
 
-\[ E\[z\_{t-1} (R\_{i,t} - *{0,i} - *{j=1}^5 *{j,i} F*{j,t})\] = 0\]
+$$E\[z\_{t-1} \cdot (R\_{i,t} - \beta\_{0,i} - \sum\_{j=1}^5 \beta\_{j,i} F\_{j,t})\] = 0$$
 
 where (z\_{t-1}) are the instruments (lagged factors and lagged
 liquidity).
