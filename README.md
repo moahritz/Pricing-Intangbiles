@@ -888,3 +888,41 @@ inflation and adjusting economic and financial data for real value
 assessments. This dataset is valuable for researchers, economists, and
 financial analysts who need to incorporate inflation measures into their
 analyses.
+
+
+'''mermaid
+flowchart TB
+    A[SKI SCHOOL BRAND] --> B[CENTRAL NODE]
+
+    B --> C1[ERP, CRM, MARKET RESEARCH]
+    B --> C2[MEDIA HOUSE]
+    B --> C3[B2C SHOP, EVENTS, STRATEGY]
+
+    C1 --> D1[FRANCHISE NETWORK]
+    C2 --> D2[FRANCHISE NETWORK]
+    C2 --> D3[LICENSEE NETWORK]
+    C3 --> D3
+
+    D1 --> E1[FRANCHISEE 1 - Ski School A]
+    D1 --> E2[FRANCHISEE 2 - Ski School B]
+
+    D2 --> E1
+    D2 --> E2
+
+    D3 --> E3[LICENSEE 1 - Merchandise]
+    D3 --> E4[LICENSEE 2 - Equipment]
+
+    E1 --> F1[SUPPLIERS / DISTRIBUTORS]
+    E2 --> F1
+
+    E3 --> F1
+    E4 --> F1
+
+    F1 --> G1[CHILDREN & PARENTS - Ski Lessons, Products]
+
+    C2 --> H1[Brand Building, Storytelling, Publishing]
+    C3 --> H2[Manages B2C Shop & Events]
+
+    H1 --> D2
+    H1 --> D3
+    '''
